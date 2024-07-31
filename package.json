@@ -1,0 +1,37 @@
+{
+  "name": "theme_wf",
+  "version": "0.0.0-development",
+  "description": "Init for project development",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rontea/theme_wf.git"
+  },
+  "author": "rontea",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rontea/theme_wf/issues"
+  },
+  "homepage": "https://github.com/rontea/theme_wf#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.1.3",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.1",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^24.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
