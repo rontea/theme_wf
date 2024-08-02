@@ -1,13 +1,12 @@
 {
   "name": "theme_wf",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Init for project development",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
     "semantic-release": "npx semantic-release"
-    
   },
   "repository": {
     "type": "git",

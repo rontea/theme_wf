@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/rontea/theme_wf/compare/1.0.1...1.1.0) (2024-08-02)
+
+### Features
+
+* **scope:** desc ([38a4a6a](https://github.com/rontea/theme_wf/commit/38a4a6af6b47d766b003ad9c444fa219a5ef895d))
+
 ## [1.0.1](https://github.com/rontea/theme_wf/compare/v1.0.0...1.0.1) (2024-08-02)
 
 ### Bug Fixes
