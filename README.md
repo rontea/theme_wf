@@ -35,7 +35,7 @@ npx git-cz
 -  Install and Configure Semantic Release
 
 ```bash
-npm install --save-dev semantic-release @semantic-release/exec @semantic-release/commit-analyzer @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+npm install --save-dev semantic-release @semantic-release/exec @semantic-release/commit-analyzer @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator conventional-changelog-conventionalcommits
 ```
 
 - Create a .releaserc.js
