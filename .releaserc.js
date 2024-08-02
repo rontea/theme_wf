@@ -26,7 +26,7 @@ module.exports = {
       [
         '@semantic-release/npm',
         {
-          npmPublish: true
+           npmPublish: process.env.NPM_PUBLISH === 'true'
         }
       ],
       '@semantic-release/github',

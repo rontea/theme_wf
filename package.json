@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
-    "semantic-release": "semantic-release"
+    "semantic-release": "npx semantic-release"
+    
   },
   "repository": {
     "type": "git",

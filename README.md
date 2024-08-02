@@ -35,58 +35,55 @@ npx git-cz
 -  Install and Configure Semantic Release
 
 ```bash
-npm install --save-dev semantic-release @semantic-release/exec @semantic-release/commit-analyzer @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/npm @semantic-release/commit-analyzer @semantic-release/release-notes-generator conventional-changelog-conventionalcommits
+npm  install --save-dev @semantic-release/changelog@^6.0.3 @semantic-release/commit-analyzer@^13.0.0 @semantic-release/exec@^6.0.3 @semantic-release/git@^10.0.1 @semantic-release/github@^10.1.3 @semantic-release/npm@^12.0.1 @semantic-release/release-notes-generator@^14.0.1 commitizen@^4.3.0 conventional-changelog-conventionalcommits@^8.0.0 cross-env@^7.0.3 cz-conventional-changelog@^3.3.0 semantic-release@^24.0.0 
 ```
 
 - Create a .releaserc.js
 
 ```js
 module.exports = {
-  branches: [
-    { name: 'main' },
-    { name: 'develop', prerelease: true },
-    { name: 'alpha/*', prerelease: 'alpha' },
-    { name: 'beta/*', prerelease: 'beta' },
-    { name: 'feature/*', prerelease: 'rc' }
-  ],
-  plugins: [
-    '@semantic-release/commit-analyzer', // Analyzes commit messages to determine the type of version bump
-    '@semantic-release/release-notes-generator', // Generates release notes based on commits
-    '@semantic-release/changelog', // Updates the changelog file
-    ...(process.env.NPM_PUBLISH === 'true' ? ['@semantic-release/npm'] : []),
-    '@semantic-release/github', // Publishes the release to GitHub
-    '@semantic-release/git' // Commits the updated package.json and changelog to the repo
-  ],
-  preset: 'conventionalcommits', // Use the conventional commits format
-  tagFormat: '${version}', // Customize the tag format
-  generateNotes: {
-    preset: 'conventionalcommits', // Customize the release notes format
-    writerOpts: {
-      commitsSort: ['subject', 'scope'] // Customize the sorting of commits in the release notes
-    }
-  },
-  verifyConditions: [
-    '@semantic-release/changelog',
-    '@semantic-release/npm',
-    '@semantic-release/github'
-  ],
-  prepare: [
-    '@semantic-release/changelog',
-    '@semantic-release/npm',
-    '@semantic-release/git'
-  ],
-  publish: [
-    '@semantic-release/npm',
-    '@semantic-release/github'
-  ],
-  success: [
-    '@semantic-release/github'
-  ],
-  fail: [
-    '@semantic-release/github'
-  ]
-};
-
+    branches: [
+      { name: 'main' },
+      { name: 'develop', prerelease: true },
+      { name: 'alpha/*', prerelease: 'alpha' },
+      { name: 'beta/*', prerelease: 'beta' },
+      { name: 'feature/*', prerelease: 'rc' }
+    ],
+    plugins: [
+      [
+        '@semantic-release/commit-analyzer',
+        {
+          preset: 'conventionalcommits'
+        }
+      ],
+      [
+        '@semantic-release/release-notes-generator',
+        {
+          preset: 'conventionalcommits',
+          writerOpts: {
+            commitsSort: ['subject', 'scope']
+          }
+        }
+      ],
+      '@semantic-release/changelog',
+      [
+        '@semantic-release/npm',
+        {
+          npmPublish: true
+        }
+      ],
+      '@semantic-release/github',
+      [
+        '@semantic-release/git',
+        {
+          assets: ['package.json', 'CHANGELOG.md'],
+          message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }
+      ]
+    ],
+    tagFormat: '${version}'
+  };
+  
 ```
 
 - Add a script to package.json to run Semantic Release:
@@ -121,18 +118,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test
 
   semantic-release:
     runs-on: ubuntu-latest
@@ -146,10 +140,10 @@ jobs:
       startsWith(github.ref, 'refs/heads/alpha/')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -161,7 +155,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-
 
 ```
 
