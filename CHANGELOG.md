@@ -1,3 +1,9 @@
+## [1.1.4](https://github.com/rontea/theme_wf/compare/1.1.3...1.1.4) (2024-08-02)
+
+### Bug Fixes
+
+* **fix:** fix 1 ([c133158](https://github.com/rontea/theme_wf/commit/c133158c002138ed42cc76bea0d07e1cb397acd2))
+
 ## [1.1.3](https://github.com/rontea/theme_wf/compare/1.1.2...1.1.3) (2024-08-02)
 
 ### Bug Fixes
