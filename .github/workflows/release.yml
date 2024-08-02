@@ -4,11 +4,17 @@ on:
   push:
     branches:
       - main
-      - next
+      - develop
+      - feature/*
+      - alpha/*
+      - beta/*
+      - stable/*
+      - master
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,14 +22,38 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20.8.1'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run Semantic Release
+      - name: Run tests
+        run: npm test
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    needs: build
+    if: |
+      github.ref == 'refs/heads/main' || 
+      github.ref == 'refs/heads/master' || 
+      github.ref == 'refs/heads/develop' || 
+      startsWith(github.ref, 'refs/heads/stable/') || 
+      startsWith(github.ref, 'refs/heads/beta/') || 
+      startsWith(github.ref, 'refs/heads/alpha/')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: 'true'
         run: npx semantic-release
