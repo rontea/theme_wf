@@ -169,6 +169,9 @@ jobs:
 - Push CLI
 
 ```bash
+git add.
+
+npx git-cz
 
 npx cross-env NPM_PUBLISH=true git push origin main
 
