@@ -8,18 +8,31 @@ module.exports = {
     ],
     plugins: [
       '@semantic-release/commit-analyzer',
-      '@semantic-release/release-notes-generator',
+      [
+        '@semantic-release/release-notes-generator',
+        {
+          preset: 'conventionalcommits',
+          writerOpts: {
+            commitsSort: ['subject', 'scope']
+          }
+        }
+      ],
       '@semantic-release/changelog',
-      '@semantic-release/npm',
+      [
+        '@semantic-release/npm',
+        {
+          npmPublish: true
+        }
+      ],
       '@semantic-release/github',
-      '@semantic-release/git'
+      [
+        '@semantic-release/git',
+        {
+          assets: ['package.json', 'CHANGELOG.md'],
+          message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        }
+      ]
     ],
     preset: 'conventionalcommits',
-    tagFormat: '${version}',
-    generateNotes: {
-      preset: 'conventionalcommits',
-      writerOpts: {
-        commitsSort: ['subject', 'scope']
-      }
-    }
+    tagFormat: '${version}'
   };
