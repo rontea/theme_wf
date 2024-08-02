@@ -10,7 +10,7 @@ module.exports = {
       [
         '@semantic-release/commit-analyzer',
         {
-          preset: 'conventionalcommits',
+          preset: 'conventionalcommits'
         }
       ],
       [
@@ -38,6 +38,6 @@ module.exports = {
         }
       ]
     ],
-    preset: 'conventionalcommits',
     tagFormat: '${version}'
-  };  
+  };
+  
