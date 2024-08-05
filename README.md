@@ -57,8 +57,17 @@ git branch -d develop --force
 git pull origin feature/new-feature
 git checkout -b alpha/new-feature
 
-# Do bug fixes 
+# Do bug fixes > then 
 
+git add .
+npx git-cz
+
+```
+
+### Beta - sample
+
+```git
+git pull origin alpha/new-feature
 ```
 
 
