@@ -54,7 +54,6 @@ jobs:
   npm-publish:
     runs-on: ubuntu-latest
     needs: semantic-release
-    if: env.NPM_PUBLISH == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
