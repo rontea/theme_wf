@@ -1,3 +1,9 @@
+## [1.2.0-alpha.2](https://github.com/rontea/theme_wf/compare/1.2.0-alpha.1...1.2.0-alpha.2) (2024-08-05)
+
+### Bug Fixes
+
+* **fix sample:** fix sample message ([bf36298](https://github.com/rontea/theme_wf/commit/bf36298a75bb72d0e4b0371846207d23254aa8c8))
+
 ## [1.2.0-alpha.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-alpha.1) (2024-08-05)
 
 ### Features
