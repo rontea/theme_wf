@@ -1,3 +1,13 @@
+## [1.2.0-rc.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-rc.1) (2024-08-05)
+
+### Features
+
+* **feat test on dev:** feat test on dev ([954115d](https://github.com/rontea/theme_wf/commit/954115db7242aab7e2b6dbe41ee37a31bcec2a57))
+* **dev merge feat:** merge feat and dev release ([65c620b](https://github.com/rontea/theme_wf/commit/65c620b2010f33d847cd19041b62dc71b2404087))
+* **feat added update:** merge feat and dev ([47068a5](https://github.com/rontea/theme_wf/commit/47068a50448c1d671cc59cb169dc008b3bf5f3c1))
+* **update feat to dev:** sample feat to dev workflow ([0250f8a](https://github.com/rontea/theme_wf/commit/0250f8a83c198aca4f37f396928386be8263129c))
+* **try feature:** try merge develop ([1165fb5](https://github.com/rontea/theme_wf/commit/1165fb5d0f20b065a7495771d823cac56b98dca4))
+
 ## [1.2.0-develop.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-develop.1) (2024-08-05)
 
 ### Features
