@@ -1,3 +1,9 @@
+## [1.2.0-develop.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-develop.1) (2024-08-05)
+
+### Features
+
+* **feat test on dev:** feat test on dev ([954115d](https://github.com/rontea/theme_wf/commit/954115db7242aab7e2b6dbe41ee37a31bcec2a57))
+
 ## [1.1.4](https://github.com/rontea/theme_wf/compare/1.1.3...1.1.4) (2024-08-02)
 
 ### Bug Fixes
