@@ -68,12 +68,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm install
       
-      - name: login
-        run: npm adduser
+      - name: Build modules
+        run: npm run build
+      
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true')
