@@ -22,13 +22,6 @@ module.exports = {
         }
       }
     ],
-    '@semantic-release/changelog',
-    [
-      '@semantic-release/npm',
-      {
-        npmPublish: process.env.NPM_PUBLISH === 'true' || process.env.GITHUB_REF === 'refs/heads/main'
-      }
-    ],
     '@semantic-release/github',
     [
       '@semantic-release/git',
