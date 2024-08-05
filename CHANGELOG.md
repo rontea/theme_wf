@@ -1,3 +1,9 @@
+## [1.3.12](https://github.com/rontea/theme_wf/compare/1.3.11...1.3.12) (2024-08-05)
+
+### Bug Fixes
+
+* **call it a day:** call it a day ([ddedd42](https://github.com/rontea/theme_wf/commit/ddedd42dd09765bc5e1388fcd5a3e6ce3da232d9))
+
 ## [1.3.11](https://github.com/rontea/theme_wf/compare/1.3.10...1.3.11) (2024-08-05)
 
 ### Bug Fixes
