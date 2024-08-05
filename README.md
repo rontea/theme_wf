@@ -21,10 +21,13 @@ git push origin develop
 ```
 - No NPM publish but will be release under change log
 - Make sure to git pull for the update version number
+- Can be move to feature for specific feature
+- semantic increment 
 
-### Feature 
-- Merge featured to develop
-- Push to develop 
+### Feature - sample
+- Create feature branch
+- Create feature coming from develop
+- Merge to Beta or Alpha
 
 ```git
 # Create a feature branch from develop
@@ -33,9 +36,29 @@ git branch
 git checkout develop
 git pull origin develop
 git checkout -b feature/new-feature
+git pull origin feature/new-feature
 git add .
 npx git-cz
 git push origin feature/new-feature
+```
+
+- Merge Develop and pull request on github
+- remove develop
+
+```git
+#remove develop on local branch
+git branch -d develop
+git branch -d develop --force
+```
+
+### Alpha - sample
+
+```git
+git pull origin feature/new-feature
+git checkout -b alpha/new-feature
+
+# Do bug fixes 
+
 ```
 
 

@@ -1,1 +1,1 @@
-console.log("added new feat sample");
+console.log("added new feat sample - bug fix");
