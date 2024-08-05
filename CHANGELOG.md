@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/rontea/theme_wf/compare/1.3.5...1.3.6) (2024-08-05)
+
+### Bug Fixes
+
+* **release:** test again ([c8a81fb](https://github.com/rontea/theme_wf/commit/c8a81fbda0880746017e1093220714dbfafa3a75))
+* **release:** try to fix ([78e8258](https://github.com/rontea/theme_wf/commit/78e825866fedb5c02a9e845ed64a192a11422c5e))
+
 ## [1.3.0](https://github.com/rontea/theme_wf/compare/1.2.0...1.3.0) (2024-08-05)
 
 ### Features
