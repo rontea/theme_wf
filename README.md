@@ -31,6 +31,7 @@ git push origin develop
 
 git branch
 git checkout develop
+git pull origin develop
 git checkout -b feature/new-feature
 
 # After developing the feature, merge it back into develop
