@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/rontea/theme_wf/compare/1.3.10...1.3.11) (2024-08-05)
+
+### Bug Fixes
+
+* **fix 4:** fix 4 end of the day ([fca7a51](https://github.com/rontea/theme_wf/commit/fca7a518d19d8db61cb443387f514043a89ca435))
+* **test 3:** test 3 ([c934c75](https://github.com/rontea/theme_wf/commit/c934c7537282f52b08e430615c34434358c6ebb4))
+
 ## [1.3.10](https://github.com/rontea/theme_wf/compare/1.3.9...1.3.10) (2024-08-05)
 
 ### Bug Fixes
