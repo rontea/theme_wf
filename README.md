@@ -3,10 +3,11 @@ Configuration Package Reference
 
 #### Workflow branches
 - main : push to NPM , merge from beta
-- develop : stay in repo , push to any of the following for merge
-- feature : merge coming [develop,alpha,beta] from new features
-- alpha : stay in repo , merge coming from [feature] if feature
-- beta : push to NPM if env true , merge from alpha
+- develop : stay in repo , push to any of the following for merge [alpah,beta]
+- alpha : stay in repo , merge coming from [feature,develop] , merge to [alpha,beta]
+- beta : push to NPM if env true , merge from [alpha] then can be merge to [main] once test pass
+- feature :clone from [main] merge for [alpha,beta] from new feature test, once [beta] pass merge to [main]
+
 
 #### Develop
 - create develop and publish to github
@@ -75,11 +76,28 @@ git checkout -b beta/new-feature
 git add .
 npx git-cz
 git push origin beta/new-feature
-
-# Merge changes to Main
-
 ```
 
+### Ready for release
+
+```git
+# Merge changes to Main
+git checkout main
+git merge branch-name
+
+# resolve conflict accept incoming changes
+git add <file-with-conflict>
+
+# Once all conflict accept all incoming changes
+npx git-cz
+git push origin main
+
+# Delete branch origin
+git push origin --delete <branch-name>
+
+# Delete branch local
+git branch -d <branch-name>
+```
 
 #### Commitizen and Conventional Commits
 - Install Commitizen and Set Up Conventional Commits
@@ -249,7 +267,7 @@ jobs:
 ```
 
 
-- Push CLI
+#### Push CLI
 
 ```bash
 git add.
@@ -257,5 +275,71 @@ git add.
 npx git-cz
 
 npx cross-env NPM_PUBLISH=true git push origin main
+
+```
+
+#### Dry Run
+
+```bash
+npx semantic-release --dry-run
+```
+
+#### NPM Delete
+
+
+#### Commit Types Guide
+
+- feat: A new feature for the user.
+- fix: A bug fix for the user.
+- docs: Documentation only changes.
+- style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc.).
+- refactor: A code change that neither fixes a bug nor adds a feature.
+- perf: A code change that improves performance.
+- test: Adding missing or correcting existing tests.
+- build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm).
+- ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs).
+- chore: Other changes that don't modify src or test files.
+- revert: Reverts a previous commit.
+
+#### Scopes (Optional):
+
+- feat(auth): add login functionality
+
+#### Write Descriptive Subject Lines:
+
+- feat(button): add disabled state
+- fix(auth): handle token expiration
+
+#### Provide Detailed Bodies (Optional):
+
+```plaintext
+feat(auth): add OAuth2 support
+
+This adds support for OAuth2 authentication, allowing users to log in
+using their Google or Facebook accounts. This improves the user
+experience and expands the range of supported login methods.
+```
+
+#### Add Breaking Changes (If Applicable):
+
+```plaintext
+feat(api): update endpoint to v2
+
+BREAKING CHANGE: The endpoint `/api/v1/users` has been changed to
+`/api/v2/users`. This change requires updating client applications
+to handle the new endpoint format.
+```
+
+#### samples
+
+```plaintext
+
+feat(profile): add user avatar upload
+fix(auth): correct token refresh logic
+docs(readme): update installation instructions
+refactor(user-service): simplify user validation logic
+perf(database): optimize query performance
+test(button): add unit tests for disabled state
+chore(deps): update lodash to v4.17.21
 
 ```
