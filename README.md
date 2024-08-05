@@ -33,18 +33,9 @@ git branch
 git checkout develop
 git pull origin develop
 git checkout -b feature/new-feature
-
-# After developing the feature, merge it back into develop
-
-git branch
-git checkout develop
-git merge feature/new-feature
-
-# Push changes to the develop branch
-
 git add .
 npx git-cz
-git push origin develop
+git push origin feature/new-feature
 ```
 
 
