@@ -1,3 +1,15 @@
+## [1.3.0](https://github.com/rontea/theme_wf/compare/1.2.0...1.3.0) (2024-08-05)
+
+### Features
+
+* **test push on feature:** feature test push action ([0698331](https://github.com/rontea/theme_wf/commit/069833178f004231e590aa76bec4f74f241bce5d))
+* **merge to main:** package publish to main ([8d8284e](https://github.com/rontea/theme_wf/commit/8d8284ec183dc9276d50654be7abc927e0ba2b22))
+
+### Bug Fixes
+
+* **fix bug:** fix bug 1 test ([74f92df](https://github.com/rontea/theme_wf/commit/74f92dfdc8cbc92a9a7573b1b51eed2d1825c728))
+* **fix sample:** fix sample message ([bf36298](https://github.com/rontea/theme_wf/commit/bf36298a75bb72d0e4b0371846207d23254aa8c8))
+
 <<<<<<< HEAD
 ## [1.2.0-beta.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-beta.1) (2024-08-05)
 
