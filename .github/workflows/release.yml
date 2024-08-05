@@ -47,12 +47,14 @@ jobs:
       - name: Run semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
         run:  npx semantic-release
 
   # Step 3: Publish to npm
   npm-publish:
     runs-on: ubuntu-latest
     needs: semantic-release
+    if: env.NPM_PUBLISH == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -68,5 +70,4 @@ jobs:
       - name: Publish to npm login
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
         run: npm publish
