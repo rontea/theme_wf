@@ -30,13 +30,6 @@ jobs:
   semantic-release:
     runs-on: ubuntu-latest
     needs: build
-    if: |
-      github.ref == 'refs/heads/main' || 
-      github.ref == 'refs/heads/master' || 
-      github.ref == 'refs/heads/develop' || 
-      startsWith(github.ref, 'refs/heads/stable/') || 
-      startsWith(github.ref, 'refs/heads/beta/') || 
-      startsWith(github.ref, 'refs/heads/alpha/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,13 +42,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Print environment variables
-        run: printenv
-
       - name: Run semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: true
+          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
         run:  npx semantic-release
-      

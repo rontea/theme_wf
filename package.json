@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
-    "semantic-release": "npx semantic-release"
+    "semantic-release": "npx semantic-release",
+    "npm-publish-if-true": "if [ \"$NPM_PUBLISH\" = \"true\" ]; then npm publish; else echo \"NPM_PUBLISH is not true, skipping publish\"; fi"
   },
   "repository": {
     "type": "git",
