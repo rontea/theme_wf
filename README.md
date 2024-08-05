@@ -61,6 +61,7 @@ git checkout -b alpha/new-feature
 
 git add .
 npx git-cz
+git push origin alpha/new-feature
 
 ```
 
@@ -68,6 +69,13 @@ npx git-cz
 
 ```git
 git pull origin alpha/new-feature
+git checkout -b beta/new-feature
+
+# Do bug fixes > then
+git add .
+npx git-cz
+git push origin beta/new-feature
+
 ```
 
 
