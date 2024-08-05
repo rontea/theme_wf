@@ -43,41 +43,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      
-      - name: Set NPM_PUBLISH for main branch
-        if: github.ref == 'refs/heads/main'
-        run: echo "NPM_PUBLISH=true" >> $GITHUB_ENV
 
       - name: Run semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: ${{ env.NPM_PUBLISH || 'false' }}
+          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
         run:  npx semantic-release
-
-  publish:
-    name: Publish to npm
-    runs-on: ubuntu-latest
-    needs: semantic-release
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: npm install  
-
-      - name: Publish to npm
-        if: github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true')
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: ${{ env.NPM_PUBLISH }}
-        run: npm publish
-
-  
