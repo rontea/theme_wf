@@ -53,7 +53,7 @@ git branch -d develop --force
 
 ### Alpha - sample
 
-```git
+```git 
 git pull origin feature/new-feature
 git checkout -b alpha/new-feature
 
@@ -75,6 +75,8 @@ git checkout -b beta/new-feature
 git add .
 npx git-cz
 git push origin beta/new-feature
+
+# Merge changes to Main
 
 ```
 
