@@ -71,11 +71,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm install
-      
-      - name: Build modules
-        run: npm run build
-      
+        run: npm install  
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true')
