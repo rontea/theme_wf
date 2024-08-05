@@ -1,3 +1,9 @@
+## [1.3.8](https://github.com/rontea/theme_wf/compare/1.3.7...1.3.8) (2024-08-05)
+
+### Bug Fixes
+
+* **add user:** add user ([1e033a4](https://github.com/rontea/theme_wf/commit/1e033a4e435e76aa0d001339e920f810ad1fabc1))
+
 ## [1.3.7](https://github.com/rontea/theme_wf/compare/1.3.6...1.3.7) (2024-08-05)
 
 ### Bug Fixes
