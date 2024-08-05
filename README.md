@@ -8,6 +8,44 @@ Configuration Package Reference
 - alpha : stay in repo , merge coming from [feature] if feature
 - beta : push to NPM if env true , merge from alpha
 
+#### Develop
+- create develop and publish to github
+```git
+git branch
+git branch develop
+git checkout develop
+git branch
+git add . 
+npx git-cz
+git push origin develop
+```
+- No NPM publish but will be release under change log
+- Make sure to git pull for the update version number
+
+### Feature 
+- Merge featured to develop
+- Push to develop 
+
+```git
+# Create a feature branch from develop
+
+git branch
+git checkout develop
+git checkout -b feature/new-feature
+
+# After developing the feature, merge it back into develop
+
+git branch
+git checkout develop
+git merge feature/new-feature
+
+# Push changes to the develop branch
+
+git add .
+npx git-cz
+git push origin develop
+```
+
 
 #### Commitizen and Conventional Commits
 - Install Commitizen and Set Up Conventional Commits
