@@ -1,3 +1,9 @@
+## [1.2.0-rc.2](https://github.com/rontea/theme_wf/compare/1.2.0-rc.1...1.2.0-rc.2) (2024-08-05)
+
+### Features
+
+* **test push on feature:** feature test push action ([0698331](https://github.com/rontea/theme_wf/commit/069833178f004231e590aa76bec4f74f241bce5d))
+
 ## [1.2.0-rc.1](https://github.com/rontea/theme_wf/compare/1.1.4...1.2.0-rc.1) (2024-08-05)
 
 ### Features
