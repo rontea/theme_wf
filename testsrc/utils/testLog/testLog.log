@@ -1,0 +1,38 @@
+
+{
+  "name": "ReferenceError",
+  "message": "consol is not defined",
+  "stack": "ReferenceError: consol is not defined\n    at Object.<anonymous> (C:\\Users\\pg311443\\OneDrive - Notified\\Documents\\Project\\theme_wf\\testsrc\\utils\\utilsTest.js:29:1)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49",
+  "cwd": "C:\\Users\\pg311443\\OneDrive - Notified\\Documents\\Project\\theme_wf\\testsrc\\utils",
+  "nodeVersion": "v20.16.0",
+  "timestamp": "[14:58:19]",
+  "memoryUsage": {
+    "rss": 28999680,
+    "heapTotal": 4673536,
+    "heapUsed": 4153688,
+    "external": 1463584,
+    "arrayBuffers": 10515
+  },
+  "metadata": {
+    "sampleKey": "sample"
+  }
+}
+
+{
+  "name": "ReferenceError",
+  "message": "consol is not defined",
+  "stack": "ReferenceError: consol is not defined\n    at Object.<anonymous> (C:\\Users\\pg311443\\OneDrive - Notified\\Documents\\Project\\theme_wf\\testsrc\\utils\\utilsTest.js:29:1)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)\n    at node:internal/main/run_main_module:28:49",
+  "cwd": "C:\\Users\\pg311443\\OneDrive - Notified\\Documents\\Project\\theme_wf\\testsrc\\utils",
+  "nodeVersion": "v20.16.0",
+  "timestamp": "[14:58:54]",
+  "memoryUsage": {
+    "rss": 28995584,
+    "heapTotal": 4673536,
+    "heapUsed": 4153736,
+    "external": 1463584,
+    "arrayBuffers": 10515
+  },
+  "metadata": {
+    "type": "custom log"
+  }
+}

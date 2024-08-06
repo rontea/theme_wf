@@ -111,4 +111,4 @@ class ErrorLogger {
 const logErr = new ErrorLogger();
 Object.freeze(logErr);
 
-module.exports = logErr;
+module.exports = {logErr, ErrorLogger};
