@@ -1,3 +1,9 @@
+## [1.4.0-rc.2](https://github.com/rontea/theme_wf/compare/1.4.0-rc.1...1.4.0-rc.2) (2024-08-07)
+
+### Features
+
+* **feat(files):** add three new methods ([303af67](https://github.com/rontea/theme_wf/commit/303af672a5dd848c0c782312bed8517341d5c487))
+
 ## [1.4.0-rc.1](https://github.com/rontea/theme_wf/compare/1.3.11...1.4.0-rc.1) (2024-08-07)
 
 ### Features
