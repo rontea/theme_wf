@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const currentTime = require('./CreateTime');
+const currentTime = require('../time/CreateTime');
 
 class ErrorLogger {
 

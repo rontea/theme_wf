@@ -1,14 +1,7 @@
 'use strict';
 
-const currentTime = require('../../src/utils/CreateTime');
-const {logErr , ErrorLogger} = require('../../src/utils/ErrorLogger');
 
-
-/** node utlsTest.js */
-
-
-console.log("Time Test" , currentTime.getTime());
-
+const {logErr , ErrorLogger} = require('../../src/utils/errorHandler/ErrorLogger');
 
 /**
     Test created default
