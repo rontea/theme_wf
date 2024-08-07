@@ -1,3 +1,15 @@
+## [1.4.0-rc.1](https://github.com/rontea/theme_wf/compare/1.3.11...1.4.0-rc.1) (2024-08-07)
+
+### Features
+
+* **error logger:** add error logger ([19a3593](https://github.com/rontea/theme_wf/commit/19a3593f23e7b0da32ced2278d9c05eded1c9b95))
+* **errorlog:** add error logger ([1f910e3](https://github.com/rontea/theme_wf/commit/1f910e36c5f4e20821233e1c312ee943181f8fe3))
+* **utils:** add utils classes ([151f9d6](https://github.com/rontea/theme_wf/commit/151f9d6a91d7f7bead000d0c9bcf450bf5564247))
+
+### Bug Fixes
+
+* **call it a day:** call it a day ([ddedd42](https://github.com/rontea/theme_wf/commit/ddedd42dd09765bc5e1388fcd5a3e6ce3da232d9))
+
 ## [1.3.11](https://github.com/rontea/theme_wf/compare/1.3.10...1.3.11) (2024-08-05)
 
 ### Bug Fixes
