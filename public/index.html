@@ -1,41 +1,48 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TODO Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-  <h1>TODO Manager</h1>
-  <form action="/add-todo" method="post">
-    <label for="id">Test Case ID:</label><br>
-    <input type="text" id="id" name="id" required><br><br>
+  <a href="addtodo">add todo</a> <br>
+    <h1>Todo List</h1>
+    <table id="todoTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Subtasks</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated by JavaScript -->
+        </tbody>
+    </table>
 
-    <label for="description">Test Description:</label><br>
-    <input type="text" id="description" name="description" required><br><br>
-
-    <label for="type">Test Type:</label><br>
-    <input type="text" id="type" name="type" required><br><br>
-
-    <label for="preConditions">Pre-Conditions:</label><br>
-    <textarea id="preConditions" name="preConditions" required></textarea><br><br>
-
-    <label for="steps">Test Steps (separate steps with new lines):</label><br>
-    <textarea id="steps" name="steps" required></textarea><br><br>
-
-    <label for="expectedResults">Expected Results:</label><br>
-    <textarea id="expectedResults" name="expectedResults" required></textarea><br><br>
-
-    <label for="actualResults">Actual Results:</label><br>
-    <textarea id="actualResults" name="actualResults"></textarea><br><br>
-
-    <label for="status">Status:</label><br>
-    <input type="text" id="status" name="status" required><br><br>
-
-    <label for="comments">Comments:</label><br>
-    <textarea id="comments" name="comments"></textarea><br><br>
-
-    <input type="submit" value="Add TODO">
-  </form>
+    <script src="./js/todo.js"></script>
 </body>
 </html>

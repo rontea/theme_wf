@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO Manager</title>
+</head>
+<body>
+  <h1>TODO Manager</h1>
+  <form action="/add-todo" method="post">
+
+    <label for="title">TODO Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">TODO Description:</label><br>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <label for="type">TODO Type:</label>
+    <select name="type" id="type">
+      <option value="Load">Load</option>
+    
+    </select><br><br>
+
+    <label for="status">TODO Status:</label>
+    <select name="status" id="status">
+      <option value="Load">Load</option>
+    </select><br><br>
+
+    <label for="subtask">TODO Sub Task: (separate steps with new lines):</label><br>
+    <textarea id="subtask" name="subtask"></textarea><br><br>
+
+
+    <label for="comments">TODO comments:</label><br>
+    <textarea id="comments" name="comments"></textarea><br><br>
+   
+
+    <input type="submit" value="Add TODO">
+  </form>
+</body>
+</html>

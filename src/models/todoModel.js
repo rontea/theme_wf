@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const jsonFilePath = path.join(__dirname, '..', 'todos.json');
+const jsonFilePath = path.join(__dirname, '..' , '..', 'todos.json');
 
 class TodoModel {
   static getTodos() {

@@ -1,20 +1,24 @@
 const TodoService = require('../services/todoService');
+const IdIncrementor = require('../utils/IdIncrementor');
 
 class TodoController {
   static addTodo(req, res) {
+
+    
+    const increment = new IdIncrementor();
+    const newId = increment.getNewId();
+
     /**
      *  this are all id for inputs > id , descriptions and so on...
      */
 
     const newTodo = {
-      id: req.body.id,
+      id: newId,
+      title: req.body.title,
       description: req.body.description,
       type: req.body.type,
-      preConditions: req.body.preConditions,
-      steps: req.body.steps.split('\n'),
-      expectedResults: req.body.expectedResults,
-      actualResults: req.body.actualResults,
       status: req.body.status,
+      subtask: req.body.subtask.split('\n'),
       comments: req.body.comments,
     };
 
