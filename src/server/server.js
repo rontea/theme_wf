@@ -16,6 +16,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public', 'index.html'));
 });
 
+// Route for the new page
+app.get('/addtodo', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public', 'addtodo.html'));
+});
+
 // action /add-todo > to do controller
 // addTodo is static
 // req ??
