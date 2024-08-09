@@ -5,6 +5,11 @@ const path = require('path');
 
 class file {
 
+    /**
+     * Check if file exists
+     * @param {file path} file 
+     * @returns boolean
+    */
 
     static existsSync(file) {
 
@@ -22,14 +27,21 @@ class file {
 
     }
 
-    static readFileJsonSync(filePath) {
+    /**
+     * 
+     * @param {file path} filePath 
+     * @param {unicode transform format} transformFormat 
+     * @returns rawdata : array
+    */
+
+    static readFileJsonSync(filePath , transformFormat) {
         try {
             
             let isJsonFile = this.isJsonFile(filePath);
             let isExist = this.existsSync(filePath);
 
             if(isExist &&  isJsonFile ){
-                const rawData = fs.readFileSync(filePath, 'utf-8');
+                const rawData = fs.readFileSync(filePath, transformFormat);
                 return rawData;
             }else {
 
@@ -48,6 +60,11 @@ class file {
         }
     }
 
+    /**
+     * Check if the file exist
+     * @param {file path} filePath 
+    */
+
     static checkFilePath(filePath) {
         
         try {
@@ -62,6 +79,12 @@ class file {
         }
        
     }
+
+    /**
+     * Check if the file is JSON file
+     * @param {file path} filePath 
+     * @returns boolean
+    */
 
     static isJsonFile(filePath){
         try{

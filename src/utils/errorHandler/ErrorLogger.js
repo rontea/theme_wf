@@ -33,27 +33,29 @@ class ErrorLogger {
         metadata: Custom metadata
 
      */
+
     writeLog(logMessage , metadata = {}) {
 
-        const errorDetails = {
-            name: logMessage.name,
-            message: logMessage.message,
-            stack: logMessage.stack,
-            cwd: process.cwd(),
-            nodeVersion: process.version,
-            timestamp: currentTime.getTime(),
-            environment: process.env.NODE_ENV,
-            url: logMessage.url,
-            user: logMessage.user,
-            request: logMessage.request,
-            session: logMessage.session,
-            memoryUsage: process.memoryUsage(),
-            appState: logMessage.appState,
-            metadata
-            
-        }
+    
+            const errorDetails = {
+                name: logMessage.name,
+                message: logMessage.message,
+                stack: logMessage.stack,
+                cwd: process.cwd(),
+                nodeVersion: process.version,
+                timestamp: currentTime.getTime(),
+                environment: process.env.NODE_ENV,
+                url: logMessage.url,
+                user: logMessage.user,
+                request: logMessage.request,
+                session: logMessage.session,
+                memoryUsage: process.memoryUsage(),
+                appState: logMessage.appState,
+                metadata
+                
+            }
 
-        const formattedLog = `\n${JSON.stringify(errorDetails, null, 2)}\n`;
+            const formattedLog = `\n${JSON.stringify(errorDetails, null, 2)}\n`;
 
         try {
 
@@ -108,7 +110,6 @@ class ErrorLogger {
 
 } 
 
-const logErr = new ErrorLogger();
-Object.freeze(logErr);
 
-module.exports = {logErr, ErrorLogger};
+
+module.exports = ErrorLogger;

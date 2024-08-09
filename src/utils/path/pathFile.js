@@ -1,5 +1,5 @@
 'use strict'
-
+/** Under Contruction */
 const path = require('path');
 
 class PathFile {
@@ -12,6 +12,11 @@ class PathFile {
         this.#dirName = __dirname;
     }
 
+    /**
+     * 
+     * @param {*} paths 
+     * @returns 
+     */
     pathJoinDirName(paths = ['' , '']) {
 
         this.#paths = this.#paths || paths;

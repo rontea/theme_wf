@@ -1,8 +1,7 @@
 'use strict'
 
 const path = require('path');
-const {logErr} = require('../errorHandler/ErrorLogger');
-const file = require('../files/files')
+const file = require('../files/files');
 
 class ConfigLoader {
 
@@ -17,10 +16,15 @@ class ConfigLoader {
             this.#mainConfigPath = options.pathMain 
                 || path.join(process.cwd(), 'config' , 'config.js');
         }catch(err){
-            logErr.writeLog(err, {constructor : 'error constructor'})
+            console.log("error constructor" , err );
         }   
         
     }
+
+    /**
+     * Load the config
+     * @returns config
+    */
 
     loadConfig(){
 
@@ -31,10 +35,14 @@ class ConfigLoader {
                 return require(this.#defaultConfigPath);
             }
         }catch(err){
-            logErr.writeLog(err, {loadConfig : 'error on loadConfig'})
+            console.log("error on loadConfig" , err );
         }
 
     }
+
+    /**
+     * Display print details for debugging
+    */
 
     printDetails() {
 
@@ -45,7 +53,7 @@ class ConfigLoader {
             console.log("Config in use" , this.loadConfig());
 
         }catch(err){
-            logErr.writeLog(err, {printDetails : 'error on printDetails'})
+            console.log("error on printDetails" , err );
         }
  
     }
