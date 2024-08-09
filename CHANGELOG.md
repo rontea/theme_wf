@@ -1,3 +1,10 @@
+## [1.4.0-rc.3](https://github.com/rontea/theme_wf/compare/1.4.0-rc.2...1.4.0-rc.3) (2024-08-09)
+
+### Features
+
+* **feat(idincrementor,  utils, code updates):** added idIncrementor , utils and fix some codes ([47d6b85](https://github.com/rontea/theme_wf/commit/47d6b858c2a207bc015171f2f60f7bdb0fc5591e))
+* **feat(idincrementor):** increament the id class ([1bf043a](https://github.com/rontea/theme_wf/commit/1bf043a64fefe718fbc31b2c2b79234b8962d6a5))
+
 ## [1.4.0-rc.2](https://github.com/rontea/theme_wf/compare/1.4.0-rc.1...1.4.0-rc.2) (2024-08-07)
 
 ### Features
