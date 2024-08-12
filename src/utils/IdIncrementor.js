@@ -16,6 +16,8 @@ class IdIncrementor {
     constructor(options = {}) {
 
         try{
+
+        const branch = utils.getCurrentBranch();
         
         this.#fileJSON = options.fileName || 'todos.json';
         
@@ -25,9 +27,13 @@ class IdIncrementor {
         }
 
         this.#filePath = options.filePath 
-            || path.join(__dirname,  '..' , '..' , this.#fileJSON);
+            || path.join(__dirname,  '..' , 'data' , this.#fileJSON);
 
-        this.#aliasId = options.aliasId || "TD";
+        if(branch === "main"){
+            this.#aliasId = options.aliasId || "TD";
+        }else{
+            this.#aliasId = options.aliasId || `${branch}-TD`;
+        }
     
         this.#tranformFormat = options.transformFormat || 'utf-8';
 
@@ -102,10 +108,12 @@ class IdIncrementor {
         try {
             let highestId = 0;
             let idNumber = 0;
+            let padNewId = 0;
            
             if(parseData.length === 0) {
                 console.log("Data is Empty");
-                return `${this.#aliasId}${highestId + 1}`;
+                padNewId = utils.padZero(highestId + 1);
+                return `${this.#aliasId}${padNewId}`;
             }
 
             parseData.forEach((data) => {
@@ -119,7 +127,8 @@ class IdIncrementor {
                 }
     
             });
-            const padNewId = utils.padZero(highestId + 1);
+            
+            padNewId = utils.padZero(highestId + 1);
             const newId = `${this.#aliasId}${padNewId}`;
     
             return newId;

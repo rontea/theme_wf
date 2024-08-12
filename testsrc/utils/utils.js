@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('../../src/utils/utils');
+const number0 = 0;
 
 const number = 1;
 
@@ -13,6 +14,7 @@ const number4 = 19;
 const number5 = 20;
 
 const number6 = 9;
+console.log(utils.padZero(0));
 
 console.log(utils.padZero(number));
 
@@ -26,3 +28,5 @@ console.log(utils.padZero(number5));
 
 console.log(utils.padZero(number6));
 
+console.log("Test current branch");
+console.log(utils.getCurrentBranch());
