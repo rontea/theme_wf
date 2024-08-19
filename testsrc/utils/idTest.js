@@ -2,7 +2,7 @@
 
 const IdIncrementor = require('../../src/utils/IdIncrementor');
 
-const increment = new IdIncrementor();
+const increment = new IdIncrementor({ propertyName : 'todos'});
 
 const newId = increment.getNewId();
 

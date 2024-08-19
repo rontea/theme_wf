@@ -25,6 +25,8 @@
 </head>
 <body>
   <a href="addtodo">add todo</a> <br>
+    
+  <div class="" id="todoList">
     <h1>Todo List</h1>
     <table id="todoTable">
         <thead>
@@ -36,13 +38,17 @@
                 <th>Status</th>
                 <th>Subtasks</th>
                 <th>Comments</th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Rows will be populated by JavaScript -->
         </tbody>
     </table>
+  </div>
+  <div id="error" style="color: red;"></div>
+  
 
-    <script src="./js/todo.js"></script>
+    <script src="/js/todos.js"></script>
 </body>
 </html>

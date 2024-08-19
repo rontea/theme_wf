@@ -15,6 +15,10 @@ class TodoService {
    * 
    * @param {todos} todos 
   */
+
+  static updateTodo(updatedTodo) {
+    const todo = TodoModel.getUpdateTodo();
+  }
   
   static updateMarkdownFile(todos) {
     
@@ -32,6 +36,7 @@ class TodoService {
     fs.writeFileSync(mdFilePath, content, 'utf8');
   
   }
+
 }
 
 module.exports = TodoService;

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const file = require('./files/files');
 const utils = require('./utils');
+const { error } = require('console');
 
 class IdIncrementor {
 
@@ -12,6 +13,7 @@ class IdIncrementor {
     #rawData;
     #tranformFormat;
     #aliasId;
+    #propertyName;
 
     constructor(options = {}) {
 
@@ -20,10 +22,11 @@ class IdIncrementor {
         const branch = utils.getCurrentBranch();
         
         this.#fileJSON = options.fileName || 'todos.json';
+        this.#propertyName = options.propertyName || 'unassigned';
         
         if(!file.isJsonFile(this.#fileJSON)){
             console.error("file is not a JSON file");
-            throw error;
+            throw new Error('file is not JSON');
         }
 
         this.#filePath = options.filePath 
@@ -88,7 +91,7 @@ class IdIncrementor {
                 return [];
             }else {
                 parseRaw = JSON.parse(this.#rawData);
-                return parseRaw;
+                return parseRaw[this.#propertyName];
             }
            
         }catch(err){
@@ -134,7 +137,7 @@ class IdIncrementor {
             return newId;
 
         }catch(err){
-            console.log("Error on findHighighestId", err);
+            console.log("Error on find Highighest Id", err);
         }
 
     }

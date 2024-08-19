@@ -30,3 +30,19 @@ console.log(utils.padZero(number6));
 
 console.log("Test current branch");
 console.log(utils.getCurrentBranch());
+
+const branch = utils.getCurrentBranch();
+console.log("Test stripURL");
+
+console.log( utils.stripUrl(branch));
+
+console.log("Test isArrayEmpty");
+
+const array = {}; // obj
+const array2 = []; // array
+console.log(utils.isArrayEmpty(array));
+console.log(utils.isArrayEmpty(array2));
+
+const arrayX = {'note' : 'note', 'sample' : 'sample'};
+
+console.log(utils.isArrayEmpty(arrayX));

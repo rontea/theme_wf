@@ -14,12 +14,24 @@ class utils {
 
         try {
             const branch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf-8' });
-            return branch.trim();
+            const branchUrl = this.stripUrl(branch.trim());
+            
+            return branchUrl;
+            
         } catch (error) {
             console.error('Error getting current branch:', error);
             return null;
         }
 
+    }
+
+    static stripUrl(url){
+        const transformedString = url.replace("/", "-");
+        return transformedString; 
+    }
+
+    static isArrayEmpty(array){
+        return array.length === 0;
     }
 }
 
