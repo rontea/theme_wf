@@ -3,6 +3,7 @@ const path = require('path');
 const QueryTodosFile = require('../../../src/classes/models/QueryTodosFile');
 const QueryTodos = require('../../../src/classes/models/QueryTodos');
 const IdIncrementor = require('../../../src/utils/IdIncrementor');
+const {format , differenceInDays} = require('date-fns');
 
 
 console.log("query file todo test, path set to this folder");
@@ -22,19 +23,24 @@ console.log(queryFileTodos.isTodosEmpty());
 console.log("Test save query todo ");
 
 /** Query file to do test */
-const increment = new IdIncrementor({propertyName: 'todos' , filePath : jsonFilePath});
+const increment = new IdIncrementor({data : obj.todos , aliasId : "TD"});
 const newId = increment.getNewId();
+
+const now = new Date();
+
+const date = format(now, "yyyy-MM-dd");
 
 const todos = {
     id: newId,
-    title: "req.body.title",
-    date: "req.body.date",
-    description: "req.body.description",
-    type: "req.body.type",
-    status: "req.body.status",
-    assign: "req.body.assign",
-    subtask: "req.body.subtask.split('\n')",
-    comments: "req.body.comments",
+    title: `${newId} Todo Title`,
+    date: date,
+    days: differenceInDays(now,date),
+    description: "This is the Todo descptions of the new feature I'm working on",
+    type: "feat",
+    status: "Unassigned",
+    assign: "Unassigned",
+    subtask: "NA",
+    comments: "Not yet assigned to anyone",
   };
 
 const queryTodos = new QueryTodos(todos, { path : jsonFilePath});
@@ -48,19 +54,20 @@ console.log(obj2);
 console.log("Incoming new");
 
 
-const increment2 = new IdIncrementor({propertyName: 'todos' , filePath : jsonFilePath});
+const increment2 = new IdIncrementor({data : obj.todos , aliasId : "TD"});
 const newId2 = increment2.getNewId();
 
 const newTodo = {
   id: newId2,
-  title: "req.body.title 2",
-  date: "req.body.date 2",
-  description: "req.body.description 2",
-  type: "req.body.type 2",
-  status: "req.body.status 2",
-  assign: "req.body.assign 2",
-  subtask: "req.body.subtask.split('\n') 2",
-  comments: "req.body.comments 2",
+  title: `${newId} Todo Title`,
+  date: date,
+  days: differenceInDays(now,date),
+  description: "This is the Todo bug fix that I'm working on",
+  type: "feat",
+  status: "Unassigned",
+  assign: "Unassigned",
+  subtask: "NA",
+  comments: "Not yet assigned to anyone",
 };
 
 const queryTodos2 = new QueryTodos(newTodo, { path : jsonFilePath});
@@ -76,14 +83,15 @@ console.log("test update");
 
 const updateTodo = {
   id: "feature-todo-writer-TD02",
-  title: "req.body.title 2 Update",
-  date: "req.body.date 2 Update",
-  description: "req.body.description 2 Update",
-  type: "req.body.type 2 Update",
-  status: "req.body.status 2 Update",
-  assign: "req.body.assign 2 Update",
-  subtask: "req.body.subtask.split('\n') 2 Update",
-  comments: "req.body.comments 2 Update",
+  title: `${newId} Todo Title`,
+  date: date,
+  days: differenceInDays(now,date),
+  description: "This is the Todo bug fix that I'm working on",
+  type: "refactor",
+  status: "Unassigned",
+  assign: "Rontea",
+  subtask: [ "feature-todo-writer-TD01" ,  "feature-todo-writer-TD01" ],
+  comments: "Will wait fot your update",
 };
 
 const queryTodos3 = new QueryTodos(updateTodo, { path : jsonFilePath});

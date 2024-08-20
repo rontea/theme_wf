@@ -4,48 +4,30 @@ const fs = require('fs');
 const path = require('path');
 const file = require('./files/files');
 const utils = require('./utils');
-const { error } = require('console');
 
 class IdIncrementor {
 
-    #fileJSON;
-    #filePath;
-    #rawData;
-    #tranformFormat;
+   
+    #data;
     #aliasId;
-    #propertyName;
+    #branch;
+   
 
     constructor(options = {}) {
 
         try{
 
         const branch = utils.getCurrentBranch();
-        
-        this.#fileJSON = options.fileName || 'todos.json';
-        this.#propertyName = options.propertyName || 'unassigned';
-        
-        if(!file.isJsonFile(this.#fileJSON)){
-            console.error("file is not a JSON file");
-            throw new Error('file is not JSON');
-        }
-
-        this.#filePath = options.filePath 
-            || path.join(__dirname,  '..' , 'data' , this.#fileJSON);
-
+        this.#branch = branch;
+        this.#data = options.data || [];
+        const tempAlias = "DEF"
+      
         if(branch === "main"){
-            this.#aliasId = options.aliasId || "TD";
+            this.#aliasId = options.aliasId || "DEF";
         }else{
-            this.#aliasId = options.aliasId || `${branch}-TD`;
+            this.#aliasId = `${branch}-${options.aliasId}` || `${branch}-${tempAlias}`;
         }
     
-        this.#tranformFormat = options.transformFormat || 'utf-8';
-
-            try{
-                this.#rawData = file.readFileJsonSync(this.#filePath, this.#tranformFormat);
-            }catch(err){
-                console.log("Error reading file " , err);
-            }
-        
         }catch(err){
             console.log("Failed contructor ", err);
         }
@@ -59,45 +41,16 @@ class IdIncrementor {
     checkData(){
 
         try{
-
-            console.log("File Path ", this.#filePath);
-            console.log("transform Format " , this.#tranformFormat);
-            console.log("Raw Data" , this.#rawData);
-    
-            const parseData = this.#parseRawData();
-            console.log("Parse Data" , parseData);
-    
-            const newId = this.findHighighestId(parseData);
-            console.log("New ID" , newId);
-
+            console.log("Alias :" , this.#aliasId);
+            console.log("Branch :" , this.#branch);
         }catch(err){
             console.log("check Data error ", err)
         }
 
-      
     }
 
-    /**
-     * Parse raw data to array
-     * @returns parse data
-    */
-
-    #parseRawData(){
-
-        let parseRaw;
-        try{
-            if(this.#rawData.length === 0){
-                
-                return [];
-            }else {
-                parseRaw = JSON.parse(this.#rawData);
-                return parseRaw[this.#propertyName];
-            }
-           
-        }catch(err){
-            console.error("Error parsing ", err);
-        }
-       
+    showData(){
+        console.log("Showing Data :" , this.#data);
     }
 
     /**
@@ -106,7 +59,7 @@ class IdIncrementor {
      * @returns new id
     */
 
-    findHighighestId(parseData){
+    #findHighighestId(parseData){
 
         try {
             let highestId = 0;
@@ -147,15 +100,24 @@ class IdIncrementor {
      * @returns id
      */
 
-    getNewId(){
-        let parseData = this.#parseRawData();
-        const newId = this.findHighighestId(parseData);
-        return newId;
+    getNewId(data = this.#data){
+        
+        try {
+
+            this.#data = data;
+            if(!utils.isArray(this.#data)){
+                console.log("Accessing Error" , this.#data);
+                throw new Error("Please check data");
+            }
+            const newId = this.#findHighighestId(this.#data);
+            return newId;
+
+        }catch(err){
+            console.log("Get new id error " , err)
+        }
+
     }
 
-    getRawData(){
-        return this.#rawData;
-    }
 
 }
 

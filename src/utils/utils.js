@@ -33,6 +33,10 @@ class utils {
     static isArrayEmpty(array){
         return array.length === 0;
     }
+
+    static isArray(array){
+        return Array.isArray(array);
+    }
 }
 
 module.exports = utils;

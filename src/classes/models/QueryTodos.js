@@ -9,10 +9,10 @@ class QueryTodos extends QueryTodosFile {
     #jsonFilepath;
 
     constructor(todo = {}, options = {}){
-        
+
         super(options.path);
         this.#todo = todo;
-        this.#jsonFilepath = options.path;  
+        this.#jsonFilepath = options.path;
     }
 
     /**
