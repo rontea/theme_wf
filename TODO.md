@@ -1,6 +1,6 @@
 # TODO
 ### List
-- [ ] [feature-todo-writer-TD01](#feature-todo-writer-TD01)  - Work on the website ~3d #feat @john 2024-08-14
+- [ ] [feature-todo-writer-TD01](#feature-todo-writer-td01)  - Work on the website ~3d #feat @john 2024-08-14
 - [ ] TD02 Fix the homepage ~1d #bug @jane  
   - [ ] TD04SUB - Sub-task fix homepage header ~1d #bug @rontea
   - [ ] TD04SUB - Sub-task fix homepage footer ~1d #bug @rontea
@@ -15,7 +15,7 @@
 - [✓] Create my first TODO.md 
 
 
-#### feature-todo-writer-TD01 [](#feature-todo-writer-TD01)
+#### feature-todo-writer-TD01 [](#feature-todo-writer-td01)
 - SubTask [ ] [TD04SUB](#TD04SUB) , 
 ```plaintext
 Title: test 1

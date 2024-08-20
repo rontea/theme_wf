@@ -43,9 +43,7 @@ class TodoListView {
             }
         }
 
-
         return symbol;
-
     }
 
     /**
@@ -82,7 +80,7 @@ class TodoListView {
                     
                 });
                
-                listView.push( { 'main' : mainTask , 'sub' : sub});
+                listView.push( { 'main' : mainTask ,  sub});
 
             }else{
                 listView.push({ 'main' : mainTask});
@@ -102,9 +100,7 @@ class TodoListView {
 
     getDetails(){
 
-
         let listView = [];
-    
 
         let symbol = " ";
 
@@ -127,6 +123,8 @@ class TodoListView {
                     }else{
                         listSubTask[index] = `[${symbol}] [${todo}](#${todo.toLowerCase()})\n`;
                     }
+
+                    symbol = " ";
                 });
 
             }else {
@@ -142,16 +140,41 @@ class TodoListView {
         return listView;
 
     }
-
+    /**
+     * Generate the view
+     * @param {object} todo 
+     * @param {string} symbol 
+     * @param {Array} listSubTask 
+     * @returns 
+     */
     #generateViewTaskDetails(todo,symbol,listSubTask){
-        let head = "```plaintext";
-        let footer = "```";
-        const detailedView = `#### [${symbol}] ${todo.id} [](${todo.id.toLowerCase()}) \n${head}\nTitle: ${todo.title}\nDate: ${todo.date}\nAssign: ${todo.assign}\n\nDescription: ${todo.description}\n\nType: #${todo.type} | Status: ${todo.status} \n\nSubtask: ${listSubTask}\nComment: \n${todo.comments}\n${footer} `;
+        
+        let head = "\n```plaintext";
+        let footer = "```\n";
+        let list = [];
+
+        if(Array.isArray(todo.subtask)){
+             list = listSubTask.join('');
+        }else{
+            list = listSubTask;
+        }
+        
+        const detailedView = `#### ${todo.id} [#](#${todo.id.toLowerCase()})\n${head}\n[${symbol}]\nTitle: ${todo.title}\nDate: ${todo.date}\nAssign: ${todo.assign}\n\nDescription: ${todo.description}\n\nType: #${todo.type} | Status: ${todo.status} \n\nSubtask: ${list}\nComment: \n${todo.comments}\n${footer} `;
+        
         return detailedView;
     }
 
+    /**
+     * 
+     * @param {object} todo 
+     * @param {string} symbol 
+     * @returns 
+     */
+
     #generateViewTask(todo,symbol){
-        const mainTask = `[${symbol}] [${todo.id}](#${todo.id.toLowerCase()}) - ${todo.description} ~${todo.days} #${todo.type} @${todo.assign} ${todo.date}`                  ;
+       
+        const mainTask = `- [${symbol}] [${todo.id}](#${todo.id.toLowerCase()}) - ${todo.description} ~${todo.days} #${todo.type} @${todo.assign} ${todo.date}\n`;
+        
         return mainTask;
     }
 
