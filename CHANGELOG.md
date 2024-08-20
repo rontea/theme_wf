@@ -1,3 +1,10 @@
+## [1.4.0-rc.5](https://github.com/rontea/theme_wf/compare/1.4.0-rc.4...1.4.0-rc.5) (2024-08-20)
+
+### Features
+
+* **feat(updatemarkdown):** create class for writing file on TODO.md ([f0c0006](https://github.com/rontea/theme_wf/commit/f0c00068fc35df1870d1a95f9d04860f3b806224))
+* **feat(todolistview):** create the view to be written in TODO.md ([e15964c](https://github.com/rontea/theme_wf/commit/e15964c1c4b2970269ba27c68d25603de3f4ca33))
+
 ## [1.4.0-rc.4](https://github.com/rontea/theme_wf/compare/1.4.0-rc.3...1.4.0-rc.4) (2024-08-19)
 
 ### Features
