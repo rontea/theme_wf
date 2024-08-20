@@ -1,3 +1,13 @@
+## [1.4.0-rc.4](https://github.com/rontea/theme_wf/compare/1.4.0-rc.3...1.4.0-rc.4) (2024-08-19)
+
+### Features
+
+* **feat(query todo):** add query todo ([b7cd52b](https://github.com/rontea/theme_wf/commit/b7cd52b21f84be6cc96a5923cde40641beb8f0b7))
+
+### Bug Fixes
+
+* **fix(idincrementor):** fix issue on first item not adding padZero ([e680d21](https://github.com/rontea/theme_wf/commit/e680d21af4639fd0fd9fcb1d3fd5aefb0f09a20e))
+
 ## [1.4.0-rc.3](https://github.com/rontea/theme_wf/compare/1.4.0-rc.2...1.4.0-rc.3) (2024-08-09)
 
 ### Features
