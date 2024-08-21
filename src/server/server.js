@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const TodoController = require('../controllers/todoController');
-const TodoModel = require("../models/todoModel");
-const utils = require('../utils/utils');
 
 const app = express();
 const port = 3100;
@@ -27,7 +25,7 @@ app.get('/edit/todo/:id', (req, res) => {
 });
 
 /** Add Todos */
-app.post('/add-todo', TodoController.addTodo);
+app.post('/api/addtodo', TodoController.addTodo);
 
 //app.get('/api/todos', TodoController.getTodos);
 
@@ -35,8 +33,6 @@ app.post('/add-todo', TodoController.addTodo);
 
 //app.put('/api/todoedit/:id',TodoController.updateTodo); 
  
-
-
 // listen to port
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

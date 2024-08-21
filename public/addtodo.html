@@ -7,49 +7,112 @@
 </head>
 <body>
   <h1>TODO Manager</h1>
-  <form action="/add-todo" method="post">
+  <form id="addTodo">
 
     <label for="title">TODO Title:</label><br>
-    <input type="text" id="title" name="title" required><br><br>
+    <input value="Test Title of Todo" type="text" id="title" name="title" required><br><br>
 
     <label for="date">Date:</label><br>
     <input type="date" id="date" name="date" required><br><br>
 
     <label for="description">TODO Description:</label><br>
-    <textarea id="description" name="description" required></textarea><br><br>
+    <textarea id="description" name="description" required>Test Description of todo the quick brown fox jumps over the lazy dogs</textarea><br><br>
 
     <label for="type">TODO Type:</label>
     <select name="type" id="type">
       <option value="feat">feat</option>
       <option value="fix">fix</option>
-      <option value="fix">docs</option>
+      <option value="docs">docs</option>
     </select><br><br>
 
     <label for="status">TODO Status:</label>
     <select name="status" id="status">
-      <option value="define">define</option>
-      <option value="inprogress">inprogress</option>
-      <option value="done">done</option>
+      <option value="Unassigned">Unassigned</option>
+      <option value="In Progress">To Do</option>
+      <option value="Code Review">Code Review</option>
+      <option value="Completed">Completed</option>
     </select><br><br>
 
     <label for="status">TODO Delegate:</label>
     <select name="assign" id="assign">
-      <option value="unassigned">unassigned</option>
+      <option value="unassigned">Unassigned</option>
       <option value="rontea">rontea</option>
-      <option value="jonjoe">jonjoe</option>
-      <option value="janejoe">janejoe</option>
     </select><br><br>
 
     <label for="subtask">TODO Sub Task: (separate steps with new lines):</label><br>
-    <textarea id="subtask" name="subtask"></textarea><br><br>
+    <textarea id="subtask" name="subtask">feature-todo-writer-TD02 feature-todo-writer-TD03
+    </textarea><br><br>
 
 
     <label for="comments">TODO comments:</label><br>
-    <textarea id="comments" name="comments"></textarea><br><br>
+    <textarea id="comments" name="comments">This is a sample comment, we are working on this sample 100</textarea><br><br>
    
 
     <input type="submit" value="Add TODO">
   </form>
-  <script src="/js/main.js"></script>
+
+  <div class="error" id="error"></div>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = today;
+
+    document.addEventListener('DOMContentLoaded' , () => {
+
+      const formId = document.getElementById('addTodo');
+      const errorDiv = document.getElementById('error');
+
+        formId.addEventListener('submit' , async (e) => {
+          e.preventDefault();
+          
+          errorDiv.textContent = '';
+
+          const addTodo = {
+              title : document.getElementById('title').value,
+              description : document.getElementById('description').value,
+              date : document.getElementById('date').value,
+              type : document.getElementById('type').value,
+              status : document.getElementById('status').value,
+              assign : document.getElementById('assign').value,
+              subtask : document.getElementById('subtask').value,
+              comments : document.getElementById('comments').value,
+          }
+
+          console.log(addTodo);
+
+          try{
+              const response = await fetch(`/api/addtodo`, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(addTodo) // Send the updateData object as JSON
+              });
+
+              if (!response.ok) {
+                  const errorData = await response.json();
+                  throw new Error(errorData.error || 'Failed to save todo');
+              }
+
+              const res = await response.json();
+
+              if(res.success) {
+                  console.log('Tasks received by server:',res.message);
+              } else {
+                console.error('Server did not process the tasks successfully');
+              }
+
+              
+          } catch (error) {
+              errorDiv.textContent = error.message;
+          }
+
+              
+      });
+
+    });
+
+
+  </script>
 </body>
 </html>

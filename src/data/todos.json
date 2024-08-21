@@ -2,25 +2,82 @@
   "todos": [
     {
       "id": "feature-todo-writer-TD01",
-      "title": "req.body.title",
-      "date": "req.body.date",
-      "description": "req.body.description",
-      "type": "req.body.type",
-      "status": "req.body.status",
-      "assign": "req.body.assign",
-      "subtask": "req.body.subtask.split('\n')",
-      "comments": "req.body.comments"
+      "title": "feature-todo-writer-TD01 Todo Title",
+      "date": "2024-08-19",
+      "days": 0,
+      "description": "This is the Todo descptions of the new feature I'm working on",
+      "type": "feat",
+      "status": "Completed",
+      "assign": "Unassigned",
+      "subtask": "NA",
+      "comments": "Not yet assigned to anyone"
     },
     {
       "id": "feature-todo-writer-TD02",
-      "title": "req.body.title 2 Update",
-      "date": "req.body.date 2 Update",
-      "description": "req.body.description 2 Update",
-      "type": "req.body.type 2 Update",
-      "status": "req.body.status 2 Update",
-      "assign": "req.body.assign 2 Update",
-      "subtask": "req.body.subtask.split('\n') 2 Update",
-      "comments": "req.body.comments 2 Update"
+      "title": "feature-todo-writer-TD01 Todo Title",
+      "date": "2024-08-19",
+      "days": 0,
+      "description": "This is the Todo bug fix that I'm working on",
+      "type": "refactor",
+      "status": "Unassigned",
+      "assign": "Rontea",
+      "subtask": [
+        "feature-todo-writer-TD01",
+        "feature-todo-writer-TD03"
+      ],
+      "comments": "Will wait fot your update"
+    },
+    {
+      "id": "feature-todo-writer-TD03",
+      "title": "feature-todo-writer-TD03 Todo Title",
+      "date": "2024-08-19",
+      "days": 0,
+      "description": "This is the Todo bug fix that I'm working on",
+      "type": "refactor",
+      "status": "Deployed",
+      "assign": "Rontea",
+      "subtask": "NA",
+      "comments": "Will wait fot your update"
+    },
+    {
+      "id": "feature-todo-writer-TD04",
+      "title": "feature-todo-writer-TD04 Todo Title",
+      "date": "2024-08-19",
+      "days": 0,
+      "description": "This is the Todo bug fix that I'm working on",
+      "type": "refactor",
+      "status": "In Progress",
+      "assign": "Rontea",
+      "subtask": [
+        "feature-todo-writer-TD02",
+        "feature-todo-writer-TD01"
+      ],
+      "comments": "Will wait fot your update"
     }
-  ]
+  ],
+  "statuses": [
+    "Unassigned",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "Testing",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold"
+  ],
+  "types": [
+    "feat",
+    "fix",
+    "docs",
+    "style",
+    "refactor",
+    "perf",
+    "test",
+    "build",
+    "ci",
+    "chore",
+    "revert"
+  ] 
+  
 }

@@ -12,9 +12,9 @@ class ConfigLoader {
         
         try{
             this.#defaultConfigPath = options.pathDefault 
-                || path.join(__dirname, '..' , '..', '..' , 'config' ,'config.js');
+                || path.join(__dirname, '..' , '..', '..' , 'config' ,'theme3Config.js');
             this.#mainConfigPath = options.pathMain 
-                || path.join(process.cwd(), 'config' , 'config.js');
+                || path.join(process.cwd(), 'config' , 'theme3Config.js');
         }catch(err){
             console.log("error constructor" , err );
         }   

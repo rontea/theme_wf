@@ -1,34 +1,29 @@
 const TodoService = require('../services/todoService');
-const IdIncrementor = require('../utils/IdIncrementor');
+const getNewId = require('../classes/func/TodoFunc');
 const TodoModel = require("../models/todoModel");
 
 class TodoController {
   static addTodo(req, res) {
-
     
-    const increment = new IdIncrementor();
-    const newId = increment.getNewId();
-
-    /**
-     *  this are all id for inputs > id , descriptions and so on...
-     */
-
     const newTodo = {
-      id: newId,
+      id: getNewId(),
       title: req.body.title,
       date: req.body.date,
+      days: 0,
       description: req.body.description,
       type: req.body.type,
       status: req.body.status,
       assign: req.body.assign,
-      subtask: req.body.subtask.split('\n'),
+      subtask: req.body.subtask,
       comments: req.body.comments,
     };
+
+    console.log("received");
 
     //TodoService.addTodo(newTodo);
 
     // redirect back
-    res.redirect('/');
+    res.json({ success: true , message : "Added Successful" });
   }
 
   static updateTodo(req,res){
