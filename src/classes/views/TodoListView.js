@@ -28,7 +28,6 @@ class TodoListView {
 
     #getSymbol(status){
 
-        const checkSymbol = "✓";
         const xSymbol = "x";
         const blankSymbol = " ";
 
@@ -36,7 +35,7 @@ class TodoListView {
         status = status.toLowerCase(); 
 
         if(status === "completed" || status === "deployed"){
-            symbol = checkSymbol;
+            symbol = xSymbol;
         } else {
             if(status === "in progress"){
                 symbol = xSymbol;

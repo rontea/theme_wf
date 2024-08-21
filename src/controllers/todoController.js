@@ -25,7 +25,7 @@ class TodoController {
       comments: req.body.comments,
     };
 
-    TodoService.addTodo(newTodo);
+    //TodoService.addTodo(newTodo);
 
     // redirect back
     res.redirect('/');

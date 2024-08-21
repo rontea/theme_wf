@@ -14,8 +14,6 @@ class UpdateMarkDown {
         this.#unicodeFormat = options.unicodeFormat || 'utf8';
         this.#content = options.content;
         
-        
-        
     }
 
     /**

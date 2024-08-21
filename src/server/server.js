@@ -8,29 +8,34 @@ const utils = require('../utils/utils');
 const app = express();
 const port = 3100;
 
-/** parses incoming JSON payloads */
+/** Parses incoming JSON payloads */
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../../public')));
 
+/** Access Pages */
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public', 'index.html'));
 });
-app.get('/api/todos', TodoController.getTodos);
 
 app.get('/addtodo', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public', 'addtodo.html'));
 });
 
-app.get('/api/todo/:id',  TodoController.getTodo);
-
-app.put('/api/todoedit/:id',TodoController.updateTodo); 
- 
 app.get('/edit/todo/:id', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/edit', 'todo.html'));
 });
 
+/** Add Todos */
 app.post('/add-todo', TodoController.addTodo);
+
+//app.get('/api/todos', TodoController.getTodos);
+
+//app.get('/api/todo/:id',  TodoController.getTodo);
+
+//app.put('/api/todoedit/:id',TodoController.updateTodo); 
+ 
+
 
 // listen to port
 app.listen(port, () => {
