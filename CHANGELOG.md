@@ -1,3 +1,10 @@
+## [1.4.0-rc.6](https://github.com/rontea/theme_wf/compare/1.4.0-rc.5...1.4.0-rc.6) (2024-08-21)
+
+### Features
+
+* **feat(config,configloader,todofunc,todocontroller):** config has been created with controller ([dfa7a9c](https://github.com/rontea/theme_wf/commit/dfa7a9c61862a9bd016d17645f4b8fb48a9f2fa3))
+* **feat(datetime):** created DateTime class ([bc15a32](https://github.com/rontea/theme_wf/commit/bc15a320571f1acb4b722411b1f9e7b2fbd867e0))
+
 ## [1.4.0-rc.5](https://github.com/rontea/theme_wf/compare/1.4.0-rc.4...1.4.0-rc.5) (2024-08-20)
 
 ### Features
