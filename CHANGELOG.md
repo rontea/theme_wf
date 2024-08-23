@@ -1,3 +1,9 @@
+## [1.4.0-rc.7](https://github.com/rontea/theme_wf/compare/1.4.0-rc.6...1.4.0-rc.7) (2024-08-23)
+
+### Features
+
+* **feat(add todos add):** added functions and fix some bugs ([3e14603](https://github.com/rontea/theme_wf/commit/3e14603d2ab5ebf6c2640a4076a522b6e04248c8))
+
 ## [1.4.0-rc.6](https://github.com/rontea/theme_wf/compare/1.4.0-rc.5...1.4.0-rc.6) (2024-08-21)
 
 ### Features
