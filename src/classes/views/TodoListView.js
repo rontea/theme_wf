@@ -1,5 +1,8 @@
 'use strict';
 
+const utils = require("../../utils/utils");
+const { isArrayEmpty } = require("../../utils/utils");
+
 class TodoListView {
 
     #data;
@@ -14,9 +17,14 @@ class TodoListView {
      */
     getHeader(){
 
-        const title = "TODO";
-        const subTitle = "List";
-        return `# ${title}\n### ${subTitle}`;
+        try{
+            const title = "TODO";
+            const subTitle = "List";
+            return `# ${title}\n### ${subTitle}`;
+    
+        }catch(err){
+            console.log("Error on getHeader" , err);
+        }
 
     }
 
@@ -28,21 +36,24 @@ class TodoListView {
 
     #getSymbol(status){
 
-        const xSymbol = "x";
-        const blankSymbol = " ";
+        try{
 
-        let symbol = blankSymbol;
-        status = status.toLowerCase(); 
+            const xSymbol = "x";
+            const blankSymbol = " ";
 
-        if(status === "completed" || status === "deployed"){
-            symbol = xSymbol;
-        } else {
-            if(status === "in progress"){
+            let symbol = blankSymbol;
+            status = status.toLowerCase(); 
+
+            if(status === "completed" || status === "deployed"){
                 symbol = xSymbol;
             }
-        }
 
-        return symbol;
+            return symbol;
+
+        }catch(err) {
+            console.log("Error on getSymbol " , err);
+        }
+        
     }
 
     /**
@@ -52,44 +63,59 @@ class TodoListView {
 
     getList(){
 
-        const listView = [];
-        let symbol = " ";
+        try{
+            const listView = [];
+            let symbol = " ";
 
-        this.#data.todos.forEach(todo => {
-           
-         symbol = this.#getSymbol(todo.status);
-
-            const mainTask = this.#generateViewTask(todo,symbol);
+            this.#data.todos.forEach(todo => {
             
-            if(todo.subtask !== 'NA') {
+                symbol = this.#getSymbol(todo.status);
 
-               let subTask;
-               let sub = [];
-                // sub
-                todo.subtask.forEach((id,index)=> {
-                  
-                    // load this information of sub task
-                    const subTaskTodo = this.#getTodoById(id);
+                const mainTask = this.#generateViewTask(todo,symbol);
 
-                    symbol = this.#getSymbol(subTaskTodo.status);
-                    const subTodoView = this.#generateViewTask(subTaskTodo,symbol);
-                    subTask = `  ${subTodoView}`;
+                if(Array.isArray(todo.subtask)) {
 
-                    sub[index] = subTask;
+                let subTask;
+                let sub = [];
+                    // sub
+                    todo.subtask.forEach((id,index)=> {
                     
-                });
-               
-                listView.push( { 'main' : mainTask ,  sub});
+                        // load this information of sub task
+                        const subTaskTodo = this.#getTodoById(id);
 
-            }else{
-                listView.push({ 'main' : mainTask});
-            }
+                        if(subTaskTodo === 'na'){
 
-            symbol = " ";
+                            if(utils.isGitDocLink(id)){
+                                sub[index] = `  - [${symbol}] ${id}\n`;
+                            }else{
+                                sub[index] = `  - [${symbol}] [${id}](${id.toLowerCase()})\n`;
+                            }
+                          
+                        }else{
+                            symbol = this.#getSymbol(subTaskTodo.status);
+                            const subTodoView = this.#generateViewTask(subTaskTodo,symbol);
+                            subTask = `  ${subTodoView}`;
+                            sub[index] = subTask;
+                        }
+                       
+                    });
+                
+                    listView.push( { 'main' : mainTask ,  sub});
 
-        });
+                }else{
+                    listView.push({ 'main' : mainTask});
+                }
 
-        return listView;
+                symbol = " ";
+
+            });
+
+            return listView;
+
+        }catch(err){
+            console.log("Error on getList ", err)
+        }
+        
     }
 
     /**
@@ -99,44 +125,69 @@ class TodoListView {
 
     getDetails(){
 
-        let listView = [];
+        try{
+            let listView = [];
 
-        let symbol = " ";
+            let symbol = " ";
 
-        this.#data.todos.forEach((todo, index) => {
+            this.#data.todos.forEach((todo, index) => {
 
-            let listSubTask = [];
+                let listSubTask = [];
 
-            symbol = this.#getSymbol(todo.status);
+                symbol = this.#getSymbol(todo.status);
 
-            if(Array.isArray(todo.subtask)) {
-                // sub
-                todo.subtask.forEach((todo , index) => {
+                if(Array.isArray(todo.subtask)) {
+                    // sub
+                    todo.subtask.forEach((todo , index) => {
 
-                    const subTodoData = this.#getTodoById(todo);
+                        const subTodoData = this.#getTodoById(todo);
+                        
+                        if(subTodoData === 'na' ){
+                            
+                            if(utils.isGitDocLink(todo)){
+                                if(index === 0) {
+                                    listSubTask[index] = this.#generateViewSubIsLinkDetails(symbol,todo,true);
+                                }else{
+                                    listSubTask[index] = this.#generateViewSubIsLinkDetails(symbol,todo,false);
+                                }   
+                                
+                            }else{
+                                if(index === 0) {
+                                    listSubTask[index] = this.#generateViewSubTaskDetails(symbol,todo,true);
+                                }else{
+                                    listSubTask[index] = this.#generateViewSubTaskDetails(symbol,todo,false);
+                                }
+                            }
 
-                    symbol = this.#getSymbol(subTodoData.status);
+                        }else{
+                            symbol = this.#getSymbol(subTodoData.status);
 
-                    if(index == 0) {
-                        listSubTask[index] = `\n[${symbol}] [${todo}](#${todo.toLowerCase()})\n`;
-                    }else{
-                        listSubTask[index] = `[${symbol}] [${todo}](#${todo.toLowerCase()})\n`;
-                    }
+                            if(index === 0) {
+                                listSubTask[index] = this.#generateViewSubTaskDetails(symbol,todo,true);
+                            }else{
+                                listSubTask[index] = this.#generateViewSubTaskDetails(symbol,todo,false);
+                            }
+                       
+                        }
 
-                    symbol = " ";
-                });
+                        symbol = " ";
+                    });
 
-            }else {
-                listSubTask = todo.subtask;
-            }
+                }else {
+                    listSubTask = todo.subtask;
+                }
 
-            listView[index] = this.#generateViewTaskDetails(todo,symbol,listSubTask);
-            
-            symbol = " ";
+                listView[index] = this.#generateViewTaskDetails(todo,symbol,listSubTask);
+                
+                symbol = " ";
 
-        });
+            });
 
-        return listView;
+            return listView;
+
+        }catch(err){
+            console.log("Error on getDetails ", err);
+        }
 
     }
     /**
@@ -148,19 +199,24 @@ class TodoListView {
      */
     #generateViewTaskDetails(todo,symbol,listSubTask){
         
-        let head = "\n```plaintext";
-        let footer = "```\n";
-        let list = [];
+        try{
+            let head = "\n```plaintext";
+            let footer = "```\n";
+            let list = [];
 
-        if(Array.isArray(todo.subtask)){
-             list = listSubTask.join('');
-        }else{
-            list = listSubTask;
+            if(Array.isArray(todo.subtask)){
+                list = listSubTask.join('');
+            }else{
+                list = listSubTask;
+            }
+            
+            const detailedView = `#### ${todo.id} [#](#${todo.id.toLowerCase()})\n${head}\n[${symbol}]\nTitle: ${todo.title}\nDate: ${todo.date}\nAssign: ${todo.assign}\n\nDescription: ${todo.description}\n\nType: #${todo.type} | Status: ${todo.status} \n\nSubtask: ${list}\nComment: \n${todo.comments}\n${footer} `;
+            
+            return detailedView;
+        }catch(err){
+            console.log("Error on generateViewTaskDetails");
         }
         
-        const detailedView = `#### ${todo.id} [#](#${todo.id.toLowerCase()})\n${head}\n[${symbol}]\nTitle: ${todo.title}\nDate: ${todo.date}\nAssign: ${todo.assign}\n\nDescription: ${todo.description}\n\nType: #${todo.type} | Status: ${todo.status} \n\nSubtask: ${list}\nComment: \n${todo.comments}\n${footer} `;
-        
-        return detailedView;
     }
 
     /**
@@ -171,21 +227,56 @@ class TodoListView {
      */
 
     #generateViewTask(todo,symbol){
-       
-        const mainTask = `- [${symbol}] [${todo.id}](#${todo.id.toLowerCase()}) - ${todo.description} ~${todo.days} #${todo.type} @${todo.assign} ${todo.date}\n`;
+
+        try{
+            const mainTask = `- [${symbol}] [${todo.id}](#${todo.id.toLowerCase()}) - ${todo.description} ~${todo.days} #${todo.type} @${todo.assign} ${todo.date}\n`;
         
-        return mainTask;
+            return mainTask;
+        }catch(err){
+            console.log("Error on generateViewTask ", err);
+        }
+       
     }
+
+    #generateViewSubIsLinkDetails(symbol,todo,first){
+
+        if(first){
+            return `\n[${symbol}] ${todo}\n`;
+        }else{
+            return `[${symbol}] ${todo}\n`;
+        }
+    }
+
+    #generateViewSubTaskDetails(symbol,todo,first){
+        if(first){
+            return `\n[${symbol}] [${todo}](#${todo.toLowerCase()})\n`;
+        }else{
+            return `[${symbol}] [${todo}](#${todo.toLowerCase()})\n`;
+        }
+    }
+
+    /**
+     * Find Todo based on id
+     * @param {*} id 
+     * @returns todo or na
+     */
 
     #getTodoById(id){
         
-        const todoIndex = this.#data.todos.findIndex( data => data.id === id);
+        try{
+            const todoIndex = this.#data.todos.findIndex( data => data.id === id);
 
-        if(todoIndex === -1){
-            console.log("cannot find id");
+            if(todoIndex === -1){
+                console.log('id not available');
+                return 'na';
+            }
+    
+            return this.#data.todos[todoIndex];
+
+        }catch(err){
+           console.log("Error on getTodoById ", err);
         }
-
-        return this.#data.todos[todoIndex];
+       
     }
 
 }

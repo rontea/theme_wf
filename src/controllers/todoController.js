@@ -1,27 +1,34 @@
 const TodoService = require('../services/todoService');
 const getNewId = require('../classes/func/TodoFunc');
 const TodoModel = require("../models/todoModel");
+const utils = require('../utils/utils');
 
 class TodoController {
   static addTodo(req, res) {
     
-    const newTodo = {
-      id: getNewId(),
-      title: req.body.title,
-      date: req.body.date,
-      days: 0,
-      description: req.body.description,
-      type: req.body.type,
-      status: req.body.status,
-      assign: req.body.assign,
-      subtask: req.body.subtask,
-      comments: req.body.comments,
-    };
+    const subTaskString =  req.body.subtask;
 
-    console.log("received");
+    const subTaskTranformArray = utils.stringsToArray(subTaskString);
 
-    //TodoService.addTodo(newTodo);
+    try{
+      const newTodo = {
+        id: getNewId(),
+        title: req.body.title,
+        date: req.body.date,
+        days: 0,
+        description: req.body.description,
+        type: req.body.type,
+        status: req.body.status,
+        assign: req.body.assign,
+        subtask: subTaskTranformArray,
+        comments: req.body.comments,
+      };
+  
+      TodoService.addTodo(newTodo);
 
+    }catch(err){
+      res.json({ success: false , message : "Failed to save todo" });
+    }
     // redirect back
     res.json({ success: true , message : "Added Successful" });
   }

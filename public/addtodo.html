@@ -89,9 +89,9 @@
                   body: JSON.stringify(addTodo) // Send the updateData object as JSON
               });
 
-              if (!response.ok) {
+              if (!response.success) {
                   const errorData = await response.json();
-                  throw new Error(errorData.error || 'Failed to save todo');
+                  throw new Error(errorData.message || 'Failed to save todo');
               }
 
               const res = await response.json();
@@ -103,8 +103,8 @@
               }
 
               
-          } catch (error) {
-              errorDiv.textContent = error.message;
+          } catch (err) {
+              errorDiv.textContent = err.message;
           }
 
               

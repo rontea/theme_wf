@@ -1,49 +1,81 @@
 # TODO
 ### List
-- [ ] [feature-todo-writer-TD01](#feature-todo-writer-td01)  - Work on the website ~3d #feat @john 2024-08-14
-- [ ] TD02 Fix the homepage ~1d #bug @jane  
-  - [ ] TD04SUB - Sub-task fix homepage header ~1d #bug @rontea
-  - [ ] TD04SUB - Sub-task fix homepage footer ~1d #bug @rontea
+ - [ ] [feature-todo-writer-TD01](#feature-todo-writer-td01) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+- [ ] [feature-todo-writer-TD02](#feature-todo-writer-td02) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+  - [ ] [feature-todo-writer-TD01](#feature-todo-writer-td01) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+- [ ] [feature-todo-writer-TD03](#feature-todo-writer-td03) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+  - [ ] [feature-todo-writer-TD01](#feature-todo-writer-td01) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+- [ ] [feature-todo-writer-TD04](#feature-todo-writer-td04) - Test Description of todo the quick brown fox jumps over the lazy dogs ~0 #feat @unassigned 2024-08-23
+  - [ ] [feature-todo-writer-TD02feature-todo-writer-TD03](feature-todo-writer-td02feature-todo-writer-td03)
 
-### In Progress
+#### feature-todo-writer-TD01 [#](#feature-todo-writer-td01)
 
-- [ ] Work on Github Repo [JIRA-345]  
-
-### Done ✓
-
-- [x] Create my first TODO.md  
-- [✓] Create my first TODO.md 
-
-
-#### feature-todo-writer-TD01 [](#feature-todo-writer-td01)
-- SubTask [ ] [TD04SUB](#TD04SUB) , 
 ```plaintext
-Title: test 1
-Date: 2024-08-14
-assign: @rontea
+[ ]
+Title: Test Title of Todo
+Date: 2024-08-23
+Assign: unassigned
 
-Description: test 1 
+Description: Test Description of todo the quick brown fox jumps over the lazy dogs
 
-Type: Load | Status: Load 
+Type: #feat | Status: Unassigned 
 
-SubTask:
-TD04SUB 
-
-test 1
+Subtask: 
+Comment: 
+This is a sample comment, we are working on this sample 100
 ```
+ #### feature-todo-writer-TD02 [#](#feature-todo-writer-td02)
 
-#### TD04SUB [](#TD04SUB)
 ```plaintext
-Title: test 1
-Date: 2024-08-14
-assign: @rontea
+[ ]
+Title: Test Title of Todo 2
+Date: 2024-08-23
+Assign: unassigned
 
-Description: test 1 
+Description: Test Description of todo the quick brown fox jumps over the lazy dogs
 
-Type: Load | Status: Load 
+Type: #feat | Status: Unassigned 
 
-SubTask:
-TD04SUB 
+Subtask: 
+[ ] [feature-todo-writer-TD01](#feature-todo-writer-td01)
 
-test 1
+Comment: 
+This is a sample comment, we are working on this sample 100
 ```
+ #### feature-todo-writer-TD03 [#](#feature-todo-writer-td03)
+
+```plaintext
+[ ]
+Title: Test Title of Todo 2
+Date: 2024-08-23
+Assign: unassigned
+
+Description: Test Description of todo the quick brown fox jumps over the lazy dogs
+
+Type: #feat | Status: Unassigned 
+
+Subtask: 
+[ ] [feature-todo-writer-TD01](#feature-todo-writer-td01)
+
+Comment: 
+This is a sample comment, we are working on this sample 100
+```
+ #### feature-todo-writer-TD04 [#](#feature-todo-writer-td04)
+
+```plaintext
+[ ]
+Title: Test Title of Todo
+Date: 2024-08-23
+Assign: unassigned
+
+Description: Test Description of todo the quick brown fox jumps over the lazy dogs
+
+Type: #feat | Status: Unassigned 
+
+Subtask: 
+[ ] [feature-todo-writer-TD02feature-todo-writer-TD03](#feature-todo-writer-td02feature-todo-writer-td03)
+
+Comment: 
+This is a sample comment, we are working on this sample 100
+```
+ 

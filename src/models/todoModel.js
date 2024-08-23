@@ -1,20 +1,30 @@
 const fs = require('fs');
 const path = require('path');
+const {addTodo,getTodos} = require('../classes/func/TodoModelsFunc');
 
 const jsonFilePath = path.join(__dirname, '..' , 'data', 'todos.json');
 
 class TodoModel {
   
+  /**
+   * 
+   * @returns 
+   */
   static getTodos() {
-    if (fs.existsSync(jsonFilePath)) {
-      const data = fs.readFileSync(jsonFilePath);
-      return JSON.parse(data);
-    }
-    return [];
+
+    const responds = getTodos();
+    console.log(responds.message);
+
+    return responds;
   }
 
-  static saveTodos(todos) {
-    fs.writeFileSync(jsonFilePath, JSON.stringify(todos, null, 2), 'utf8');
+  /**
+   * Save Todos
+   * @param {*} todos 
+   */
+  static saveTodo(todo) {
+    let responds = addTodo(todo);
+    console.log(responds.message);
   }
 
   static getTodoById(index){
