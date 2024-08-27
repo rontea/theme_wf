@@ -71,7 +71,7 @@ class IdIncrementor {
                 padNewId = utils.padZero(highestId + 1);
                 return `${this.#aliasId}${padNewId}`;
             }
-
+            //get last array and update it
             parseData.forEach((data) => {
                 let number = parseInt(data.id.replace(this.#aliasId , '' ), 10);
                 

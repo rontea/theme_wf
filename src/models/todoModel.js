@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {addTodo,getTodos} = require('../classes/func/TodoModelsFunc');
+const {addTodo,getTodos,getStatuses,getTypes} = require('../classes/func/TodoModelsFunc');
 
 const jsonFilePath = path.join(__dirname, '..' , 'data', 'todos.json');
 
@@ -18,6 +18,18 @@ class TodoModel {
     return responds;
   }
 
+  static getStatuses(){
+
+    const responds = getStatuses();
+    return responds;
+  }
+
+  static getTypes(){
+    const responds = getTypes();
+   
+    return responds;
+  }
+
   /**
    * Save Todos
    * @param {*} todos 
@@ -27,33 +39,7 @@ class TodoModel {
     console.log(responds.message);
   }
 
-  static getTodoById(index){
-
-      const data = this.getTodos();
-
-      const todoIndex = data.findIndex( data => data.id === index);
-
-      if (todoIndex === -1) {
-        return res.status(404).json({ error: 'Todo not found' });
-      }
-
-    return data[todoIndex];
-
-  }
-
-  static saveTodoById(todoIndex,updateData){
-    const data = this.getTodos();
-
-    data[todoIndex] = { ...data[todoIndex], ...updateData};
-
-    this.saveTodos(data);
-
-  }
 
 }
-
-
-
-
 
 module.exports = TodoModel;

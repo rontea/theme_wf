@@ -78,5 +78,13 @@
     "ci",
     "chore",
     "revert"
+  ],
+
+  "assigned": [
+    {
+      "id" : "",
+      "name" : "",
+      "alias": ""
+    }
   ]
 }

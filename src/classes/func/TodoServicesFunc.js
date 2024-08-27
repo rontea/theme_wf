@@ -10,7 +10,6 @@ const fileUpdateMarkdownTodos = (todos) => {
     try{
 
         const data = defaultTodosView(todos);
-        console.log(data.message);
         const writeTodo = new UpdateMarkDown({filePath: config.paths.todoMdFile});
         writeTodo.todoFileWrite(data.content);
 

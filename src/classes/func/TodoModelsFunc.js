@@ -48,4 +48,38 @@ const getTodos = () => {
 
 }
 
-module.exports = {addTodo , getTodos};
+const getStatuses = () => {
+
+    let responds = "{}";
+
+    try {
+        const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
+        const todosData = queryFileTodos.getTodos();
+        responds = {message : "Load Get Todo Sucess " , statuses : todosData.statuses};
+        return  responds;
+
+    }catch(err){
+        responds = { message : `Failed to load get todos: ${err}` , statuses : "No Data" };
+        return responds;
+    }
+
+}
+
+const getTypes = () => {
+
+    let responds = "{}";
+
+    try {
+        const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
+        const todosData = queryFileTodos.getTodos();
+        responds = {message : "Load Get Todo Sucess " , types : todosData.types};
+        return  responds;
+
+    }catch(err){
+        responds = { message : `Failed to load get todos: ${err}` , types : "No Data" };
+        return responds;
+    }
+
+}
+
+module.exports = {addTodo , getTodos , getStatuses, getTypes};

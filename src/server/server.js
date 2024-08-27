@@ -24,8 +24,21 @@ app.get('/edit/todo/:id', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/edit', 'todo.html'));
 });
 
+app.get('/addstatuses', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public', 'addstatuses.html'));
+});
+
+
 /** Add Todos */
 app.post('/api/addtodo', TodoController.addTodo);
+
+app.get('/api/get/todos', TodoController.getTodos);
+
+/**  */
+app.get('/api/get/statuses' , TodoController.getStatuses);
+
+/** */ 
+app.get('/api/get/type', TodoController.getTypes);
 
 //app.get('/api/todos', TodoController.getTodos);
 

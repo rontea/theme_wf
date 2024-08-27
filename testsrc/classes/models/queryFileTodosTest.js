@@ -16,7 +16,7 @@ console.log(queryFileTodos.getFilePath());
 
 const obj = queryFileTodos.getTodos();
 
-console.log(obj);
+console.log(obj.statuses);
 
 console.log(queryFileTodos.isTodosEmpty());
 

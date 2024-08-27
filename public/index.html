@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-  <a href="addtodo">add todo</a> <br>
+  <a href="addtodo">add todo</a> | <a href="addstatuses">add/edit statuses</a> <br>
     
   <div class="" id="todoList">
     <h1>Todo List</h1>
@@ -33,9 +33,12 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Date</th>
+                <th>Days</th>
                 <th>Description</th>
                 <th>Type</th>
                 <th>Status</th>
+                <th>Assign</th>
                 <th>Subtasks</th>
                 <th>Comments</th>
                 <th colspan="2">Action</th>
@@ -48,7 +51,98 @@
   </div>
   <div id="error" style="color: red;"></div>
   
+<script>
+    
 
-    <script src="/js/todos.js"></script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+ 
+    const errorDiv = document.getElementById('error');
+
+   
+
+        async function loadTodoListAsync() {
+
+            try{
+
+                const response = await fetch('/api/get/todos' , {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+
+                if(!response.ok){
+                   
+                    const error = await response.json();
+                    throw new Error(`HTTP error! Status: ${error.status}`);
+                    
+                }
+
+                const result = await response.json();
+               
+                await listTodos(result);
+                
+
+            }catch(err){
+                errorDiv.textContent = err.message;
+            }
+        }
+
+        async function listTodos(todos) {
+
+            const todoTable = document.getElementById('todoTable').getElementsByTagName('tbody')[0];
+            
+
+            todos.forEach(todo => {
+                
+                const link = document.createElement('a');
+                const linkDel = document.createElement('a');
+
+                link.href = `/edit/todo/${todo.id}`;
+                link.textContent = 'Edit';
+
+                linkDel.href = `/del/todo/${todo.id}`;
+                linkDel.textContent = 'Del';
+
+                const row = todoTable.insertRow();
+
+                const cellId = row.insertCell(0);
+                const cellTitle = row.insertCell(1);
+                const cellDate = row.insertCell(2);
+                const cellDay = row.insertCell(3);
+                const cellDescription = row.insertCell(4);
+                const cellType = row.insertCell(5);
+                const cellStatus = row.insertCell(6);
+                const cellAssign = row.insertCell(7);
+                const cellSubtask = row.insertCell(8);
+                const cellComments = row.insertCell(9);
+                const cellActionEdit = row.insertCell(10);
+                const cellActionDelete = row.insertCell(11);
+
+                cellId.textContent = todo.id;
+                cellTitle.textContent = todo.title;
+                cellDate.textContent = todo.date;
+                cellDay.textContent = todo.days;
+                cellDescription.textContent = todo.description;
+                cellType.textContent = todo.type;
+                cellStatus.textContent = todo.status;
+                cellAssign.textContent = todo.assign;
+                cellSubtask.textContent = todo.subtask;
+                cellComments.textContent = todo.comments;
+                 
+
+                cellActionEdit.appendChild(link);
+                cellActionDelete.appendChild(linkDel);
+
+            }); 
+        }
+
+    loadTodoListAsync();
+
+    });
+
+</script>
 </body>
 </html>

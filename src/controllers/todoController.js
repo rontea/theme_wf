@@ -4,14 +4,22 @@ const TodoModel = require("../models/todoModel");
 const utils = require('../utils/utils');
 
 class TodoController {
-  static addTodo(req, res) {
-    
-    const subTaskString =  req.body.subtask;
 
-    const subTaskTranformArray = utils.stringsToArray(subTaskString);
+  /**
+   * Responsible for add TODO
+   * @param {*} req 
+   * @param {*} res 
+   */
+  static addTodo(req, res) {
+
+    let id = "";
+    let title = "";
 
     try{
-      const newTodo = {
+    const subTaskString =  req.body.subtask;
+    const subTaskTranformArray = utils.stringsToArray(subTaskString);
+   
+    const newTodo = {
         id: getNewId(),
         title: req.body.title,
         date: req.body.date,
@@ -26,39 +34,56 @@ class TodoController {
   
       TodoService.addTodo(newTodo);
 
+      id = newTodo.id;
+      title = newTodo.title;
+
     }catch(err){
-      res.json({ success: false , message : "Failed to save todo" });
+      res.json({ success: false , message : "Failed to save TODO" });
     }
-    // redirect back
-    res.json({ success: true , message : "Added Successful" });
+
+    res.json({ success: true , message : "TODO added successful" , todo: { id : id , title : title} });
+   
   }
-
-  static updateTodo(req,res){
-    const todoId = req.params.id;
-    const title = req.body.title;
-    const description = req.body.description;
-    console.log(todoId);
-    console.log(title);
-    console.log(description);
-    console.log('Received body:', req.body);
-
-    // update > get update > write update
-    
-  }
-
-  static getTodo(req,res){
-
-    const todoId = req.params.id;
-
-    const todo = TodoModel.getTodoById(todoId);
-    res.json(todo);
-
-  }
-
+  /**
+   * Responsible ing getting all TODO
+   * @param {*} req 
+   * @param {*} res 
+   */
   static getTodos(req,res){
-    const todos = TodoModel.getTodos();
-    res.json(todos);
+    
+   let dataTodo = [];
+  
+    try{
+      
+      const data = TodoModel.getTodos();
+      dataTodo = data.todos;
+
+    }catch(err){
+      console.log(err);
+    }
+    // only one data is accepted 
+    res.json(dataTodo);
   }
+  /**
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
+  static getStatuses(req,res) {
+    const dataStatuses = TodoModel.getStatuses();
+    const statuses = dataStatuses.statuses;
+    
+    res.json(statuses);
+  }
+
+  static getTypes(req,res) {
+    const dataTypes = TodoModel.getTypes();
+    const types = dataTypes.types;
+    
+    res.json(types);
+  }
+
+  
 
 }
 
