@@ -1,3 +1,9 @@
+## [1.4.0-rc.8](https://github.com/rontea/theme_wf/compare/1.4.0-rc.7...1.4.0-rc.8) (2024-08-27)
+
+### Features
+
+* **feat(addtodo):** add todo created ([04b7643](https://github.com/rontea/theme_wf/commit/04b764348e6fec94fa765973e3c0a0bbb4948490))
+
 ## [1.4.0-rc.7](https://github.com/rontea/theme_wf/compare/1.4.0-rc.6...1.4.0-rc.7) (2024-08-23)
 
 ### Features
