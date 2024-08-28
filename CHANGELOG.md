@@ -1,3 +1,9 @@
+## [1.4.0-rc.9](https://github.com/rontea/theme_wf/compare/1.4.0-rc.8...1.4.0-rc.9) (2024-08-28)
+
+### Features
+
+* **feat(start building ui add statuses):** update add statuses, update getStatuses ([a23efdd](https://github.com/rontea/theme_wf/commit/a23efddf95df0446ca6d0428b90151d0d6b542ed))
+
 ## [1.4.0-rc.8](https://github.com/rontea/theme_wf/compare/1.4.0-rc.7...1.4.0-rc.8) (2024-08-27)
 
 ### Features
