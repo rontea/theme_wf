@@ -2,51 +2,89 @@
   "todos": [
     {
       "id": "feature-todo-writer-TD01",
-      "title": "feature-todo-writer-TD01 Todo Title",
-      "date": "2024-08-26",
+      "title": "Test Title of Todo",
+      "date": "2024-08-23",
       "days": 0,
-      "description": "This is the Todo descptions of the new feature I'm working on",
+      "description": "Test Description of todo the quick brown fox jumps over the lazy dogs",
       "type": "feat",
       "status": "Unassigned",
-      "assign": "Unassigned",
-      "subtask": "NA",
-      "comments": "Not yet assigned to anyone"
+      "assign": "unassigned",
+      "subtask": [],
+      "comments": "This is a sample comment, we are working on this sample 100"
     },
     {
-      "id": "feature-todo-writer-TD01",
-      "title": "feature-todo-writer-TD01 Todo Title",
-      "date": "2024-08-26",
+      "id": "feature-todo-writer-TD02",
+      "title": "Test Title of Todo 2",
+      "date": "2024-08-23",
       "days": 0,
-      "description": "This is the Todo bug fix that I'm working on",
+      "description": "Test Description of todo the quick brown fox jumps over the lazy dogs",
       "type": "feat",
       "status": "Unassigned",
-      "assign": "Unassigned",
-      "subtask": "NA",
-      "comments": "Not yet assigned to anyone"
+      "assign": "unassigned",
+      "subtask": [
+        "feature-todo-writer-TD01"
+      ],
+      "comments": "This is a sample comment, we are working on this sample 100"
+    },
+    {
+      "id": "feature-todo-writer-TD03",
+      "title": "Test Title of Todo 2",
+      "date": "2024-08-23",
+      "days": 0,
+      "description": "Test Description of todo the quick brown fox jumps over the lazy dogs",
+      "type": "feat",
+      "status": "Unassigned",
+      "assign": "unassigned",
+      "subtask": [
+        "feature-todo-writer-TD01"
+      ],
+      "comments": "This is a sample comment, we are working on this sample 100"
+    },
+    {
+      "id": "feature-todo-writer-TD04",
+      "title": "Test Title of Todo",
+      "date": "2024-08-23",
+      "days": 0,
+      "description": "Test Description of todo the quick brown fox jumps over the lazy dogs",
+      "type": "feat",
+      "status": "Unassigned",
+      "assign": "unassigned",
+      "subtask": [
+        "feature-todo-writer-TD02feature-todo-writer-TD03"
+      ],
+      "comments": "This is a sample comment, we are working on this sample 100"
     }
   ],
-    "statuses": [
-      "Unassigned",
-      "To Do",
-      "In Progress",
-      "Code Review",
-      "Testing",
-      "Blocked",
-      "Completed",
-      "Deployed",
-      "On Hold"
-    ],
-    "types": [
-      "feat",
-      "fix",
-      "docs",
-      "style",
-      "refactor",
-      "perf",
-      "test",
-      "build",
-      "ci",
-      "chore",
-      "revert"
-    ]
+  "statuses": [
+    "Unassigned",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "Testing",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold"
+  ],
+  "types": [
+    "feat",
+    "fix",
+    "docs",
+    "style",
+    "refactor",
+    "perf",
+    "test",
+    "build",
+    "ci",
+    "chore",
+    "revert"
+  ],
+
+  "assigned": [
+    {
+      "id" : "",
+      "name" : "",
+      "alias": ""
+    }
+  ]
 }

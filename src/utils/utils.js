@@ -109,6 +109,16 @@ class utils {
         return isGitHubLinkValidFormat;
     }
 
+    static isObjectAvailable(data){
+
+        if(data){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }
 
 module.exports = utils;

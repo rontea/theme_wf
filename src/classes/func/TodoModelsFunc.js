@@ -3,6 +3,7 @@
 const config = require('../../config/configLoader');
 const QueryTodos = require('../models/QueryTodos');
 const QueryTodosFile = require('../models/QueryTodosFile');
+const utils = require('../../utils/utils');
 
 /**
  * Function to add Todo on Json file
@@ -54,12 +55,18 @@ const getStatuses = () => {
 
     try {
         const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
-        const todosData = queryFileTodos.getTodos();
-        responds = {message : "Load Get Todo Sucess " , statuses : todosData.statuses};
+        let todosData = queryFileTodos.getTodos();
+
+        if(!utils.isObjectAvailable(todosData.statuses)){
+            todosData = { statuses : []};
+        }
+
+        responds = {message : "Load Get statuses sucessful" , statuses : todosData.statuses};
         return  responds;
 
     }catch(err){
-        responds = { message : `Failed to load get todos: ${err}` , statuses : "No Data" };
+        
+        responds = { message : `Failed to load get statuses: ${err}` , statuses : ['No Data'] };
         return responds;
     }
 

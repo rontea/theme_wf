@@ -55,17 +55,7 @@
       "comments": "This is a sample comment, we are working on this sample 100"
     }
   ],
-  "statuses": [
-    "Unassigned",
-    "To Do",
-    "In Progress",
-    "Code Review",
-    "Testing",
-    "Blocked",
-    "Completed",
-    "Deployed",
-    "On Hold"
-  ],
+  
   "types": [
     "feat",
     "fix",

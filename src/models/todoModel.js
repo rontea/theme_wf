@@ -21,12 +21,12 @@ class TodoModel {
   static getStatuses(){
 
     const responds = getStatuses();
+    console.log(responds);
     return responds;
   }
 
   static getTypes(){
     const responds = getTypes();
-   
     return responds;
   }
 

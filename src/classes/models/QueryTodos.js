@@ -102,6 +102,10 @@ class QueryTodos extends QueryTodosFile {
 
     }
 
+    updateTodosStatuses(){
+        
+    }
+
     /**
      * Update the existing todo
      * @param {updated todo} updatedTodo 
