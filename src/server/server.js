@@ -37,6 +37,9 @@ app.get('/api/get/todos', TodoController.getTodos);
 /**  */
 app.get('/api/get/statuses' , TodoController.getStatuses);
 
+/** */
+app.post('/api/addstatuses' , TodoController.addStatuses);
+
 /** */ 
 app.get('/api/get/type', TodoController.getTypes);
 

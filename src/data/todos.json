@@ -55,7 +55,6 @@
       "comments": "This is a sample comment, we are working on this sample 100"
     }
   ],
-  
   "types": [
     "feat",
     "fix",
@@ -69,12 +68,17 @@
     "chore",
     "revert"
   ],
-
   "assigned": [
     {
-      "id" : "",
-      "name" : "",
+      "id": "",
+      "name": "",
       "alias": ""
     }
+  ],
+  "statuses": [
+    "sa",
+    "das",
+    "test 2",
+    "dasd"
   ]
 }

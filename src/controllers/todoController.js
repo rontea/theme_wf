@@ -38,7 +38,7 @@ class TodoController {
       title = newTodo.title;
 
     }catch(err){
-      res.json({ success: false , message : "Failed to save TODO" });
+      res.json({ success: false , message : "Failed to save TODO" , error : err });
     }
 
     res.json({ success: true , message : "TODO added successful" , todo: { id : id , title : title} });
@@ -74,6 +74,26 @@ class TodoController {
     const statuses = dataStatuses.statuses;
     
     res.json(statuses);
+  }
+
+  static addStatuses(req,res){
+   
+    
+    try{
+      
+    const statuses = req.body;
+
+    
+    setTimeout(() => {
+      TodoModel.saveStatuses(statuses);
+    }, 2000);
+    res.json('respond');
+    
+    }catch(err){
+      console.log(err);
+    }
+
+    
   }
 
   static getTypes(req,res) {

@@ -28,6 +28,28 @@ const addTodo = (todo) => {
 };
 
 /**
+ * Function to add Statuses on JSON file
+ * @param {*} statuses 
+ * @returns respond
+ */
+
+const addStatuses = (statuses) => {
+
+    let responds = "{}";
+
+    try{
+        const queryTodos = new QueryTodos(statuses, { path : config.paths.todoJsonFile});
+        queryTodos.saveTodoStatuses();
+        responds = { message : "Statuses has been saved"};
+
+    }catch(err){
+       return { message : `Failed to add statuses: ${err}` };
+    }
+    
+    return responds;
+}
+
+/**
  * Function to get Todos from Json file
  * @returns respond
  */
@@ -57,7 +79,7 @@ const getStatuses = () => {
         const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
         let todosData = queryFileTodos.getTodos();
 
-        if(!utils.isObjectAvailable(todosData.statuses)){
+        if(!utils.isObjectAvailable('statuses', todosData)){
             todosData = { statuses : []};
         }
 
@@ -89,4 +111,4 @@ const getTypes = () => {
 
 }
 
-module.exports = {addTodo , getTodos , getStatuses, getTypes};
+module.exports = {addTodo , addStatuses , getTodos , getStatuses, getTypes};

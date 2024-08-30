@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {addTodo,getTodos,getStatuses,getTypes} = require('../classes/func/TodoModelsFunc');
+const {addTodo,getTodos,getStatuses,getTypes,addStatuses } = require('../classes/func/TodoModelsFunc');
 
 const jsonFilePath = path.join(__dirname, '..' , 'data', 'todos.json');
 
@@ -36,6 +36,11 @@ class TodoModel {
    */
   static saveTodo(todo) {
     let responds = addTodo(todo);
+    console.log(responds.message);
+  }
+
+  static saveStatuses(statuses){
+    let responds = addStatuses(statuses);
     console.log(responds.message);
   }
 

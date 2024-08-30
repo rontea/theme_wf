@@ -109,9 +109,15 @@ class utils {
         return isGitHubLinkValidFormat;
     }
 
-    static isObjectAvailable(data){
+    static isObjectAvailable(inQuestion,data){
 
-       return Object.keys(data).length === 0;
+        if(inQuestion in data){
+            return true;
+        }else {
+            return false;
+        }
+
+       
     }
 
 }
