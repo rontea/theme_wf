@@ -1,3 +1,10 @@
+## [1.4.0-rc.10](https://github.com/rontea/theme_wf/compare/1.4.0-rc.9...1.4.0-rc.10) (2024-08-30)
+
+### Features
+
+* **feat(added statuses writter):** added save statuses queryTodos and fix some issues ([53425b3](https://github.com/rontea/theme_wf/commit/53425b3c81bec1b39c762cbd96590c6f6094e09f))
+* **feat(add save statuses):** write file when save on addstatuses page ([435fb46](https://github.com/rontea/theme_wf/commit/435fb46e6641fad5be8c6ac5a74cd8ca315b967f))
+
 ## [1.4.0-rc.9](https://github.com/rontea/theme_wf/compare/1.4.0-rc.8...1.4.0-rc.9) (2024-08-28)
 
 ### Features
