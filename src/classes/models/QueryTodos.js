@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const QueryTodosFile = require('./QueryTodosFile');
+const utils = require('../../utils/utils');
 
 class QueryTodos extends QueryTodosFile {
     
@@ -21,9 +22,26 @@ class QueryTodos extends QueryTodosFile {
      */
 
     mapTodo(){
-        const todo = { todos : [] };
-        todo.todos.push(this.#todo);
-        return todo;
+
+        /** Create and add new item */
+        let todos = [];
+        let data = super.getTodos();
+        data.todos = todos;
+        data.todos.push(this.#todo);
+       
+        return data;
+        
+    }
+
+    mapStatuses(){
+        /** Create and add new item */
+        let statuses = this.#todo;
+        let data = super.getTodos();
+        data.statuses = statuses;
+       
+        
+        return data;
+              
     }
 
     /**
@@ -50,20 +68,7 @@ class QueryTodos extends QueryTodosFile {
         return data.todos[todoIndex];
     }
 
-
-    /**
-     * Save new Todos
-     */
-    saveTodos(){
-        let todos;
-
-        if(this.isTodosEmpty()){
-            todos = this.mapTodo();
-        }else {
-            todos = super.getTodos();
-            todos.todos.push(this.#todo);
-        }
-       
+    writeTodosJSON(todos){
         try{
             fs.writeFileSync(this.#jsonFilepath, 
                 JSON.stringify(todos, null, 2), 'utf8');
@@ -71,6 +76,42 @@ class QueryTodos extends QueryTodosFile {
         }catch(err){
             console.log(err);
         }
+    }
+
+
+    /**
+     * Save new Todos
+     */
+    saveTodos(){
+        let todos  = super.getTodos();
+
+        if('todos' in todos){
+
+           
+            todos.todos.push(this.#todo);
+           
+        }else {
+
+        // 'todos is not on the list we need to create it'
+            todos = this.mapTodo();
+        }
+       
+        this.writeTodosJSON(todos);
+    }
+
+    saveTodoStatuses(){
+
+        let todo  = super.getTodos();
+
+        if(!('statuses' in todo)){
+            todo = this.mapStatuses();
+           
+        }else{
+         //update content 
+
+         todo.statuses = this.#todo;
+        }
+        this.writeTodosJSON(todo);
         
     }
 
@@ -84,12 +125,16 @@ class QueryTodos extends QueryTodosFile {
 
             const id =  this.#todo.id || updateData.id;
             const data = super.getTodos();
+
+            if(!('todos' in data)){
+                return { error: 'Todo not found' };
+            }
           
             const todoIndex = data.todos.findIndex( data => data.id === id);
 
     
             if (todoIndex === -1) {
-                return res.status(404).json({ error: 'Todo not found' });
+                return { error: 'Todo not found' };
             }
            
            data.todos[todoIndex] = {...data.todos[todoIndex] , ...updateData}

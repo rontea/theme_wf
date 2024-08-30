@@ -6,18 +6,22 @@ const IdIncrementor = require('../../../src/utils/IdIncrementor');
 const {format , differenceInDays} = require('date-fns');
 
 
-console.log("query file todo test, path set to this folder");
-
-// set filepath
 const jsonFilePath = path.join(__dirname, 'todos.json');
-// set filepath
+
 const queryFileTodos = new QueryTodosFile(jsonFilePath);
-// get todo test
 
-console.log(queryFileTodos.getFilePath());
-console.log(queryFileTodos.isPathExist());
+const statuses = [    
+    "Unassigned",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "Testing",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold"
+];
 
-const obj = queryFileTodos.getTodos();
-console.log(obj.todos);
+const queryTodos = new QueryTodos(statuses, { path : jsonFilePath});
 
-
+queryTodos.saveTodoStatuses();

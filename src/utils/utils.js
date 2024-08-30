@@ -111,12 +111,7 @@ class utils {
 
     static isObjectAvailable(data){
 
-        if(data){
-            return true;
-        }else{
-            return false;
-        }
-
+       return Object.keys(data).length === 0;
     }
 
 }
