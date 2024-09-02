@@ -1,3 +1,30 @@
+## [1.4.0](https://github.com/rontea/theme_wf/compare/1.3.11...1.4.0) (2024-09-02)
+
+### Features
+
+* **error logger:** add error logger ([19a3593](https://github.com/rontea/theme_wf/commit/19a3593f23e7b0da32ced2278d9c05eded1c9b95))
+* **errorlog:** add error logger ([1f910e3](https://github.com/rontea/theme_wf/commit/1f910e36c5f4e20821233e1c312ee943181f8fe3))
+* **feat(query todo):** add query todo ([b7cd52b](https://github.com/rontea/theme_wf/commit/b7cd52b21f84be6cc96a5923cde40641beb8f0b7))
+* **feat(files):** add three new methods ([303af67](https://github.com/rontea/theme_wf/commit/303af672a5dd848c0c782312bed8517341d5c487))
+* **feat(addtodo):** add todo created ([04b7643](https://github.com/rontea/theme_wf/commit/04b764348e6fec94fa765973e3c0a0bbb4948490))
+* **feat(added addtypes and fixbugs):** add type on JSON and fix bug on missing null data on raw ([8193da5](https://github.com/rontea/theme_wf/commit/8193da5a3f15e3f024406c961415c96651ba6e30))
+* **utils:** add utils classes ([151f9d6](https://github.com/rontea/theme_wf/commit/151f9d6a91d7f7bead000d0c9bcf450bf5564247))
+* **feat(add todos add):** added functions and fix some bugs ([3e14603](https://github.com/rontea/theme_wf/commit/3e14603d2ab5ebf6c2640a4076a522b6e04248c8))
+* **feat(idincrementor,  utils, code updates):** added idIncrementor , utils and fix some codes ([47d6b85](https://github.com/rontea/theme_wf/commit/47d6b858c2a207bc015171f2f60f7bdb0fc5591e))
+* **feat(added statuses writter):** added save statuses queryTodos and fix some issues ([53425b3](https://github.com/rontea/theme_wf/commit/53425b3c81bec1b39c762cbd96590c6f6094e09f))
+* **feat(config,configloader,todofunc,todocontroller):** config has been created with controller ([dfa7a9c](https://github.com/rontea/theme_wf/commit/dfa7a9c61862a9bd016d17645f4b8fb48a9f2fa3))
+* **feat(updatemarkdown):** create class for writing file on TODO.md ([f0c0006](https://github.com/rontea/theme_wf/commit/f0c00068fc35df1870d1a95f9d04860f3b806224))
+* **feat(todolistview):** create the view to be written in TODO.md ([e15964c](https://github.com/rontea/theme_wf/commit/e15964c1c4b2970269ba27c68d25603de3f4ca33))
+* **feat(datetime):** created DateTime class ([bc15a32](https://github.com/rontea/theme_wf/commit/bc15a320571f1acb4b722411b1f9e7b2fbd867e0))
+* **feat(idincrementor):** increament the id class ([1bf043a](https://github.com/rontea/theme_wf/commit/1bf043a64fefe718fbc31b2c2b79234b8962d6a5))
+* **feat(start building ui add statuses):** update add statuses, update getStatuses ([a23efdd](https://github.com/rontea/theme_wf/commit/a23efddf95df0446ca6d0428b90151d0d6b542ed))
+* **feat(add save statuses):** write file when save on addstatuses page ([435fb46](https://github.com/rontea/theme_wf/commit/435fb46e6641fad5be8c6ac5a74cd8ca315b967f))
+
+### Bug Fixes
+
+* **call it a day:** call it a day ([ddedd42](https://github.com/rontea/theme_wf/commit/ddedd42dd09765bc5e1388fcd5a3e6ce3da232d9))
+* **fix(idincrementor):** fix issue on first item not adding padZero ([e680d21](https://github.com/rontea/theme_wf/commit/e680d21af4639fd0fd9fcb1d3fd5aefb0f09a20e))
+
 ## [1.4.0-rc.10](https://github.com/rontea/theme_wf/compare/1.4.0-rc.9...1.4.0-rc.10) (2024-08-30)
 
 ### Features
