@@ -50,6 +50,28 @@ const addStatuses = (statuses) => {
 }
 
 /**
+ * Function to add Statuses on JSON file
+ * @param {*} statuses 
+ * @returns respond
+ */
+
+const addTypes = (types) => {
+
+    let responds = "{}";
+
+    try{
+        const queryTodos = new QueryTodos(types, { path : config.paths.todoJsonFile});
+        queryTodos.saveTodoTypes();
+        responds = { message : "Types has been saved"};
+
+    }catch(err){
+       return { message : `Failed to add types: ${err}` };
+    }
+    
+    return responds;
+}
+
+/**
  * Function to get Todos from Json file
  * @returns respond
  */
@@ -60,16 +82,25 @@ const getTodos = () => {
 
     try {
         const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
-        const todosData = queryFileTodos.getTodos();
-        responds = {message : "Load Get Todo Sucess " , todos : todosData.todos};
+        let todosData = queryFileTodos.getTodos();
+        if(!utils.isObjectAvailable('todos', todosData)){
+            todosData = { todos : []};
+        }
+
+        responds = {message : "Load Get Todo Success " , todos : todosData.todos};
         return  responds;
 
     }catch(err){
-        responds = { message : `Failed to load get todos: ${err}` , todos : "No Data" };
+        responds = { message : `Failed to load get todos: ${err}` , todos : ['No data'] };
         return responds;
     }
 
 }
+
+/**
+ * Function to get Statuses from Json file
+ * @returns respond
+ */
 
 const getStatuses = () => {
 
@@ -83,7 +114,7 @@ const getStatuses = () => {
             todosData = { statuses : []};
         }
 
-        responds = {message : "Load Get statuses sucessful" , statuses : todosData.statuses};
+        responds = {message : "Load Get Statuses successful" , statuses : todosData.statuses};
         return  responds;
 
     }catch(err){
@@ -94,21 +125,57 @@ const getStatuses = () => {
 
 }
 
+/**
+ * Function to get Types from Json file
+ * @returns respond
+ */
 const getTypes = () => {
 
     let responds = "{}";
 
     try {
         const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
-        const todosData = queryFileTodos.getTodos();
-        responds = {message : "Load Get Todo Sucess " , types : todosData.types};
+        let todosData = queryFileTodos.getTodos();
+
+        if(!utils.isObjectAvailable('types', todosData)){
+            todosData = { types : []};
+        }
+
+        responds = {message : "Load Get Types Success " , types : todosData.types};
         return  responds;
 
     }catch(err){
-        responds = { message : `Failed to load get todos: ${err}` , types : "No Data" };
+        responds = { message : `Failed to load get types: ${err}` , types : ['No Data']};
         return responds;
     }
 
 }
 
-module.exports = {addTodo , addStatuses , getTodos , getStatuses, getTypes};
+/**
+ * Function to get Contributors from Json file
+ * @returns respond
+ */
+
+const getContributors = () => {
+
+    let responds = "{}";
+
+    try {
+        const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
+        let todosData = queryFileTodos.getTodos();
+        if(!utils.isObjectAvailable('assigned', todosData)){
+            todosData = { assigned : [{name: '' , link: ''}]};
+        }
+
+        responds = {message : "Load Get Contributors Success " , assigned : todosData.assigned};
+        return  responds;
+
+    }catch(err){
+        responds = { message : `Failed to load get contributors: ${err}` , assigned : [ { name : 'No data' , link : 'no data'}] };
+        return responds;
+    }
+
+}
+
+
+module.exports = {addTodo , addStatuses , addTypes, getTodos , getStatuses, getTypes, getContributors};

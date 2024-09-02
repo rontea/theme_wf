@@ -33,6 +33,16 @@ class QueryTodos extends QueryTodosFile {
         
     }
 
+    mapContributor(){
+        /** Create and add new item */
+        let todos = [];
+        let data = super.getTodos();
+        data.assigned = assigned;
+        data.assigned.push(this.#todo);
+        
+        return data;
+    }
+
     mapStatuses(){
         /** Create and add new item */
         let statuses = this.#todo;
@@ -42,6 +52,16 @@ class QueryTodos extends QueryTodosFile {
         
         return data;
               
+    }
+
+    mapTypes(){
+        /** Create and add new item */
+        let types = this.#todo;
+        let data = super.getTodos();
+        data.types = types;
+        
+        
+        return data;
     }
 
     /**
@@ -98,7 +118,9 @@ class QueryTodos extends QueryTodosFile {
        
         this.writeTodosJSON(todos);
     }
-
+    /**
+     * Save new Statuses
+     */
     saveTodoStatuses(){
 
         let todo  = super.getTodos();
@@ -110,6 +132,43 @@ class QueryTodos extends QueryTodosFile {
          //update content 
 
          todo.statuses = this.#todo;
+        }
+        this.writeTodosJSON(todo);
+        
+    }
+
+    /**
+     * Save new todo types
+     */
+
+    saveTodoTypes(){
+
+        let todo  = super.getTodos();
+
+        if(!('types' in todo)){
+            todo = this.mapTypes();
+           
+        }else{
+         //update content 
+
+         todo.types = this.#todo;
+        }
+        this.writeTodosJSON(todo);
+        
+    }
+    
+    
+    saveContributor(){
+
+        let todo  = super.getTodos();
+
+        if(!('assigned' in todo)){
+            todo = this.mapContributor();
+           
+        }else{
+         //update content 
+
+         todo.assigned = this.#todo;
         }
         this.writeTodosJSON(todo);
         

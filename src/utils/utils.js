@@ -111,11 +111,16 @@ class utils {
 
     static isObjectAvailable(inQuestion,data){
 
-        if(inQuestion in data){
-            return true;
-        }else {
-            return false;
+        try{
+            if(inQuestion in data){
+                return true;
+            }else {
+                return false;
+            }
+        }catch(err){
+            console.log(err);
         }
+
 
        
     }

@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-  <a href="addtodo">add todo</a> | <a href="addstatuses">add/edit statuses</a> <br>
+  <a href="addtodo">add todo</a> | <a href="addstatuses">add/edit statuses</a> | <a href="addtypes">add/edit types</a> <br>
     
   <div class="" id="todoList">
     <h1>Todo List</h1>
@@ -80,14 +80,27 @@
                     
                 }
 
-                const result = await response.json();
+                const results = await response.json();
                
-                await listTodos(result);
+               
                 
+                if(results.length !== 0){
+                    await listTodos(results);
+                }else{
+                    await nodataResponse();
+                }
 
             }catch(err){
                 errorDiv.textContent = err.message;
             }
+        }
+
+        async function nodataResponse(){
+         
+            const p = document.createElement('p');
+            p.textContent = "No Data Available";
+
+            document.getElementById('todoList').appendChild(p);
         }
 
         async function listTodos(todos) {

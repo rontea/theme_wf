@@ -52,8 +52,11 @@ class QueryTodosFile{
             }
 
             if (this.isPathExist()) {
-                const data = fs.readFileSync(this.#jsonTodoFilePath);
-                return JSON.parse(data);
+                const data = fs.readFileSync(this.#jsonTodoFilePath , 'utf-8');
+                    if(data.trim()){
+                        return JSON.parse(data);
+                    }
+                
                 }
                 return {};
         }catch(err){

@@ -28,20 +28,29 @@ app.get('/addstatuses', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public', 'addstatuses.html'));
 });
 
+app.get('/addtypes', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public', 'addtypes.html'));
+});
+
 
 /** Add Todos */
 app.post('/api/addtodo', TodoController.addTodo);
 
 app.get('/api/get/todos', TodoController.getTodos);
 
-/**  */
+/** Statuses */
 app.get('/api/get/statuses' , TodoController.getStatuses);
 
 /** */
 app.post('/api/addstatuses' , TodoController.addStatuses);
 
-/** */ 
-app.get('/api/get/type', TodoController.getTypes);
+/** Types */ 
+app.get('/api/get/types', TodoController.getTypes);
+
+/** */
+app.post('/api/addtypes', TodoController.addTypes);
+
+app.get('/api/get/contributors', TodoController.getAssign);
 
 //app.get('/api/todos', TodoController.getTodos);
 

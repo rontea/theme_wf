@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {addTodo,getTodos,getStatuses,getTypes,addStatuses } = require('../classes/func/TodoModelsFunc');
+const {addTodo,getTodos,getStatuses,getTypes,getContributors,addStatuses,addTypes } = require('../classes/func/TodoModelsFunc');
 
 const jsonFilePath = path.join(__dirname, '..' , 'data', 'todos.json');
 
@@ -14,19 +14,25 @@ class TodoModel {
 
     const responds = getTodos();
     console.log(responds.message);
-
     return responds;
   }
 
   static getStatuses(){
 
     const responds = getStatuses();
-    console.log(responds);
+    console.log(responds.message);
     return responds;
   }
 
   static getTypes(){
     const responds = getTypes();
+    console.log(responds.message);
+    return responds;
+  }
+
+  static getContributors(){
+    const responds = getContributors();
+    console.log(responds.message);
     return responds;
   }
 
@@ -41,6 +47,11 @@ class TodoModel {
 
   static saveStatuses(statuses){
     let responds = addStatuses(statuses);
+    console.log(responds.message);
+  }
+
+  static saveTypes(types){
+    let responds = addTypes(types);
     console.log(responds.message);
   }
 

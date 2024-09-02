@@ -10,6 +10,7 @@ class TodoController {
    * @param {*} req 
    * @param {*} res 
    */
+  
   static addTodo(req, res) {
 
     let id = "";
@@ -59,7 +60,7 @@ class TodoController {
       dataTodo = data.todos;
 
     }catch(err){
-      console.log(err);
+      console.log('server error', err);
     }
     // only one data is accepted 
     res.json(dataTodo);
@@ -70,19 +71,28 @@ class TodoController {
    * @param {*} res 
    */
   static getStatuses(req,res) {
-    const dataStatuses = TodoModel.getStatuses();
-    const statuses = dataStatuses.statuses;
-    
-    res.json(statuses);
+
+    try{
+      const dataStatuses = TodoModel.getStatuses();
+      const statuses = dataStatuses.statuses;
+      
+      res.json(statuses);
+    }catch(err){
+      console.log('server error', err);
+    }
+
   }
 
+  /**
+   * Responsible in adding statuses
+   * @param {*} req 
+   * @param {*} res 
+   */
   static addStatuses(req,res){
    
-    
     try{
       
     const statuses = req.body;
-
     
     setTimeout(() => {
       TodoModel.saveStatuses(statuses);
@@ -90,21 +100,72 @@ class TodoController {
     res.json('respond');
     
     }catch(err){
-      console.log(err);
+      console.log('server error', err);
     }
 
-    
   }
+
+  /**
+   * Responsible in getting all statuses
+   * @param {*} req 
+   * @param {*} res 
+   */
 
   static getTypes(req,res) {
-    const dataTypes = TodoModel.getTypes();
-    const types = dataTypes.types;
-    
-    res.json(types);
+
+    try{
+      const dataTypes = TodoModel.getTypes();
+      const types = dataTypes.types;
+      
+      res.json(types);
+    }catch(err){
+      console.log('server error' , err);
+    }
+
   }
 
-  
 
+  /**
+   * Reposible in updating Types
+   * @param {*} req 
+   * @param {*} res 
+   */
+  static addTypes(req,res){
+   
+    try{
+      
+    const types = req.body;
+    
+    setTimeout(() => {
+      TodoModel.saveTypes(types);
+    }, 2000);
+    res.json('respond');
+    
+    }catch(err){
+      console.log('server error' , err);
+    }
+
+  }
+
+  /**
+   * Responsible in getting assigned
+   * @param {*} req 
+   * @param {*} res 
+   */
+  static getAssign(req,res){
+
+    try{
+
+      const dataContributors = TodoModel.getContributors();
+      const contributors  = dataContributors.assigned;
+  
+      res.json(contributors);
+
+    }catch(err){
+      res.json('server error' , err);
+    }
+
+  }
 }
 
 module.exports = TodoController;
