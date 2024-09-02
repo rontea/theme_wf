@@ -98,10 +98,10 @@ jobs:
         with:
           status: "${{'New release is available! Check it out.' }}"
         env:
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          consumer_key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer_secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 
   
   
