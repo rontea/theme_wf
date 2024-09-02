@@ -1,10 +1,10 @@
 const { TwitterApi } = require('twitter-api-v2');
 
 const client = new TwitterApi({
-  appKey: process.env.TWITTER_CONSUMER_KEY,
-  appSecret: process.env.TWITTER_CONSUMER_SECRET,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  appKey: process.env.CONSUMER_API_KEY,
+  appSecret: process.env.CONSUMER_API_SECRET_KEY,
+  accessToken: process.env.ACCESS_TOKEN,
+  accessSecret: process.env.ACCESS_TOKEN_SECRET,
 });
 
 async function tweetRelease() {
