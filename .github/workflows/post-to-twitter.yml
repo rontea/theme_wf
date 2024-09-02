@@ -25,13 +25,11 @@ jobs:
       - name: Extract first change log entry
         id: extract_change_log
         run: |
-          FIRST_ENTRY=$(awk '/^## /{i++}i==2{exit}i==1' CHANGELOG.md)
+          FIRST_ENTRY=$(awk '/^\* \*\*/{print; exit}' CHANGELOG.md)
           echo "CHANGELOG_ENTRY=${FIRST_ENTRY}" >> $GITHUB_ENV
 
       - name: Post to Twitter
         uses: ethomson/send-tweet-action@v1
-        with:
-          status: "New Release: ${{ env.CHANGELOG_ENTRY }}"
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
