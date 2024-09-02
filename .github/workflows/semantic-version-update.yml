@@ -94,7 +94,7 @@ jobs:
           echo "CHANGELOG_ENTRY=${FIRST_ENTRY}" >> $GITHUB_ENV
 
       - name: Post to Twitter
-        uses: ethomson/send-tweet-action@v1
+        uses: appleboy/twitter-action@master
         with:
           status: "${{'New release is available! Check it out.' }}"
         env:
