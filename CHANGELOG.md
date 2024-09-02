@@ -1,3 +1,9 @@
+## [1.5.0-rc.1](https://github.com/rontea/theme_wf/compare/1.4.0...1.5.0-rc.1) (2024-09-02)
+
+### Features
+
+* **feat(test ci):** test ci ([ecf4522](https://github.com/rontea/theme_wf/commit/ecf45228b8a7f0268189b4f685b32e2fa52db56f))
+
 ## [1.4.0](https://github.com/rontea/theme_wf/compare/1.3.11...1.4.0) (2024-09-02)
 
 ### Features
