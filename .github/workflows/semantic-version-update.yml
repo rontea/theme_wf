@@ -30,4 +30,4 @@ jobs:
       - name: Update semantic version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --no-ci --branches=${{ github.ref_name }}
+        run: npx semantic-release
