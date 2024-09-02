@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
-    "release:semver": "semantic-release --extends .releaserc-semver.js",
-    "release:npm": "semantic-release --extends .releaserc-npm.js",
+    "release:semver": "semantic-release --extends ./.releaserc-semver.js",
+    "release:npm": "semantic-release --extends ./.releaserc-npm.js",
     "npm-publish-if-true": "if [ \"$NPM_PUBLISH\" = \"true\" ]; then npm publish; else echo \"NPM_PUBLISH is not true, skipping publish\"; fi"
   },
   "repository": {
