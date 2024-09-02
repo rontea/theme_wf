@@ -1,0 +1,33 @@
+name: Post to Twitter
+
+on:
+  workflow_run:
+    workflows: ["Semantic Version Update"]
+    types:
+      - completed
+
+jobs:
+  post-to-twitter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Post to Twitter
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: "New Release: ${{ github.event.release.name }} - ${{ github.event.release.html_url }}"
+        env:
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}

@@ -1,0 +1,29 @@
+name: NPM Publish
+
+on:
+  workflow_run:
+    workflows: ["Semantic Version Update"]
+    types:
+      - completed
+
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to NPM
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
+        run: npm publish --access public
