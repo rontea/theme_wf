@@ -2,7 +2,7 @@ name: Post to Twitter
 
 on:
   workflow_run:
-    workflows: ["Semantic Version Update"]
+    workflows: ["semantic-version-update"]
     types:
       - completed
 
