@@ -87,21 +87,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Extract first change log entry
-        id: extract_change_log
+      - name: Extract latest changelog entry
+        id: extract_changelog
         run: |
-          FIRST_ENTRY=$(awk '/^\* \*\*/{print; exit}' CHANGELOG.md)
-          echo "CHANGELOG_ENTRY=${FIRST_ENTRY}" >> $GITHUB_ENV
+          LATEST_CHANGELOG=$(awk '/^## \[/{if(NR!=1) exit; print;flag=1; next} /^#/{flag=0} flag' CHANGELOG.md)
+          echo "LATEST_CHANGELOG=$LATEST_CHANGELOG" >> $GITHUB_ENV
 
       - name: Post to Twitter
-        uses: appleboy/twitter-action@master
-        with:
-          status: "${{'New release is available! Check it out.' }}"
-        env:
-          consumer_key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-          consumer_secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-          access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        run: |
+          curl -X POST "https://api.twitter.com/2/tweets" \
+          -H "Authorization: Bearer ${{ secrets.TWITTER_BEARER_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d "{\"text\":\"Latest Release: ${{ 'test' }}\"}"
 
   
   
