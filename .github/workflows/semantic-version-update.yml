@@ -87,18 +87,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Extract latest changelog entry
-        id: extract_changelog
+      - name: Obtain Bearer Token
+        id: get_bearer_token
         run: |
-          LATEST_CHANGELOG=$(awk '/^## \[/{if(NR!=1) exit; print;flag=1; next} /^#/{flag=0} flag' CHANGELOG.md)
-          echo "LATEST_CHANGELOG=$LATEST_CHANGELOG" >> $GITHUB_ENV
+          response=$(curl -X POST "https://api.twitter.com/oauth2/token" \
+          -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
+          -u "${{ secrets.TWITTER_CLIENT_ID }}:${{ secrets.TWITTER_CLIENT_SECRET }}" \
+          -d "grant_type=client_credentials")
+          echo "BEARER_TOKEN=$(echo $response | jq -r .access_token)" >> $GITHUB_ENV
 
-      - name: Post to Twitter
+      - name: Use Bearer Token to Make an API Call
         run: |
-          curl -X POST "https://api.twitter.com/2/tweets" \
-          -H "Authorization: Bearer ${{ secrets.TWITTER_BEARER_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d "{\"text\":\"Latest Release: ${{ 'test' }}\"}"
+          curl -X GET "https://api.twitter.com/2/users/by/username/TwitterDev" \
+          -H "Authorization: Bearer ${{ env.BEARER_TOKEN }}" \
+          -H "Content-Type: application/json"
 
   
   
