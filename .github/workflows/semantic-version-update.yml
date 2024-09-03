@@ -9,7 +9,7 @@ on:
       - alpha/*
       - beta/*
       - stable/*
-      - master
+      - main
 
 jobs:
   # Step 1: Build

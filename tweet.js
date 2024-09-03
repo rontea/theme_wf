@@ -9,7 +9,7 @@ const client = new TwitterApi({
 
 async function tweetRelease() {
   try {
-    const message = `New release has been added to https://github.com/rontea/theme_wf`;
+    const message = `New release has been added to https://github.com/rontea/theme_wf/releases`;
     await client.v2.tweet(message);
     console.log('Tweeted:', message);
   } catch (error) {
