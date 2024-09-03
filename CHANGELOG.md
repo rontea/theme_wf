@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## [1.3.12](https://github.com/rontea/theme_wf/compare/1.3.11...1.3.12) (2024-08-05)
 
 ### Bug Fixes
@@ -184,3 +185,5 @@
 ### Features
 
 * **add new:** added new ([7290ef4](https://github.com/rontea/theme_wf/commit/7290ef4a65453a0f8d50c4040460359816d85342))
+=======
+>>>>>>> feature/todo-writer

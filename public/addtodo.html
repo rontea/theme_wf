@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO Manager</title>
+</head>
+<style>
+  .successMessage {
+    color: green;
+    padding: 2px;
+    background-color: orange;
+    display: none;
+  }
+
+</style>
+
+<body>
+
+  <p> <a href="./" class="link">home</a>  </p>
+  <h1>TODO Manager</h1>
+
+  <div class="successMessage" id="successMessage">
+
+  </div>
+
+  <form id="addTodo">
+
+    <label for="title">TODO Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="description">TODO Description:</label><br>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <label for="type">TODO Type:</label>
+    <select name="type" id="type" required>
+    </select><br><br>
+
+    <label for="status">TODO Status:</label>
+    <select name="status" id="status" required>
+    </select><br><br>
+
+    <label for="assign">TODO Delegate:</label>
+    <select name="assign" id="assign" required>
+    </select><br><br>
+
+    <label for="subtask">TODO Sub Task: (separate steps with new lines):</label><br>
+    <textarea id="subtask" name="subtask"></textarea><br><br>
+
+
+    <label for="comments">TODO comments:</label><br>
+    <textarea id="comments" name="comments"></textarea><br><br>
+   
+
+    <input type="submit" value="Add TODO">
+  </form>
+
+  <div class="error" id="error"></div>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = today;
+
+    document.addEventListener('DOMContentLoaded' , () => {
+
+      const formId = document.getElementById('addTodo');
+      const errorDiv = document.getElementById('error');
+
+        formId.addEventListener('submit' , async (e) => {
+          e.preventDefault();
+          
+          errorDiv.textContent = '';
+
+          const addTodo = {
+              title : document.getElementById('title').value,
+              description : document.getElementById('description').value,
+              date : document.getElementById('date').value,
+              type : document.getElementById('type').value,
+              status : document.getElementById('status').value,
+              assign : document.getElementById('assign').value,
+              subtask : document.getElementById('subtask').value,
+              comments : document.getElementById('comments').value,
+          }
+
+          try{
+              const response = await fetch(`/api/addtodo`, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(addTodo) // Send the updateData object as JSON
+              });
+
+              const result = await response.json();
+
+              if (result.success) {
+                
+                await showSucessMessage(result);
+
+              }else{
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to save todo');
+              }
+              
+          } catch (err) {
+              errorDiv.textContent = err.message;
+          } 
+      });
+
+     
+
+      async function showSucessMessage(result){
+        
+        const successMessageDiv = document.getElementById('successMessage');
+        successMessageDiv.innerHTML = `${result.message}<br> ${result.todo.id} <br> ${result.todo.title}`;
+        console.log(successMessageDiv);
+        successMessageDiv.style.display = 'block';
+      };
+
+      async function loadStatuses(){
+
+        try{
+
+          const response = await fetch('/api/get/statuses' , {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(!response.ok){
+            const error = await response.json();
+            throw new Error(`HTTP error! Status: ${error.status}`);
+          } 
+
+          const results = await response.json();
+
+          const selectStatus = document.getElementById('status');
+
+          results.forEach(status => {
+            const option = document.createElement('option');
+              option.value = status; 
+              option.textContent = status; 
+            selectStatus.appendChild(option); 
+          });
+
+        }catch(err){
+          errorDiv.textContent = err.message;
+        }
+      }
+
+      async function loadTypes(){
+
+        try{
+
+          const response = await fetch('/api/get/types' , {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json'
+            }
+          });
+
+          if(!response.ok){
+            const error = await response.json();
+            throw new Error(`HTTP error! Status: ${error.status}`);
+          }
+
+          const results = await response.json();
+
+          const selectType = document.getElementById('type');
+
+          results.forEach(type => {
+            const option = document.createElement('option');
+              option.value = type; 
+              option.textContent = type; 
+            selectType.appendChild(option); 
+          });
+
+        }catch(err){
+          errorDiv.textContent = err.message;
+        }
+      }
+
+      async function loadDelegate(){
+
+        try{
+
+          const response = await fetch('/api/get/contributors' , {
+            method: 'GET',
+            headers: {
+              'Content-Type' : 'application/json'
+            }
+          });
+
+          if(!response.ok){
+            const error = await response.json();
+            throw new Error(`HTTP error! Status: ${error.status}`);
+          }
+
+          const results = await response.json();
+
+          const selectDelegate = document.getElementById('assign');
+
+          results.forEach(contrib => {
+            const option = document.createElement('option');
+              option.value = contrib.name; 
+              option.textContent = contrib.name; 
+            selectDelegate.appendChild(option); 
+          });
+
+        }catch(err){
+          errorDiv.textContent = err.message;
+        }
+      }
+
+      loadStatuses();
+      loadTypes();
+      loadDelegate();
+
+    });
+  </script>
+</body>
+</html>

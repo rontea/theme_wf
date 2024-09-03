@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": "feature-todo-writer-TD01",
+      "title": "feature-todo-writer-TD01 Todo Title",
+      "date": "2024-08-30",
+      "days": 0,
+      "description": "This is the Todo descptions of the new feature I'm working on",
+      "type": "feat",
+      "status": "Unassigned",
+      "assign": "Unassigned",
+      "subtask": "NA",
+      "comments": "Not yet assigned to anyone"
+    }
+  ],
+  "statuses": [
+    "UnassignedEditted",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "TestingEditted",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold",
+    "New"
+  ]
+}
