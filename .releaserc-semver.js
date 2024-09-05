@@ -10,7 +10,7 @@ module.exports = {
     [
       '@semantic-release/commit-analyzer',
       {
-        preset: 'conventionalcommits'
+        preset: 'conventionalcommits',
       }
     ],
     [
@@ -18,19 +18,39 @@ module.exports = {
       {
         preset: 'conventionalcommits',
         writerOpts: {
-          commitsSort: ['subject', 'scope']
+          commitsSort: ['subject', 'scope'],
         }
       }
     ],
-    '@semantic-release/changelog',
+    [
+      '@semantic-release/changelog',
+      {
+        changelogFile: determineChangelogFile(process.env.GITHUB_REF),
+      }
+    ],
     '@semantic-release/github',
     [
       '@semantic-release/git',
       {
-        assets: ['package.json', 'CHANGELOG.md'],
-        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        assets: [
+          'package.json',
+          determineChangelogFile(process.env.GITHUB_REF)
+        ],
+        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       }
     ]
   ],
   tagFormat: '${version}'
 };
+
+/**
+ * Determines the changelog file based on the current branch.
+ * @param {string} branchName - The name of the branch.
+ * @returns {string} - The file name to be used for changelog.
+ */
+function determineChangelogFile(branchName) {
+  if (branchName === 'refs/heads/main') {
+    return 'CHANGELOG.md';
+  }
+  return 'Development.md';
+}
