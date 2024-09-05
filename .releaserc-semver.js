@@ -1,10 +1,10 @@
 module.exports = {
   branches: [
-    { name: 'main' },
-    { name: 'develop', prerelease: true },
-    { name: 'alpha/*', prerelease: 'alpha' },
-    { name: 'beta/*', prerelease: 'beta' },
-    { name: 'feature/*', prerelease: 'rc' }
+    { name: 'main' },  // Stable releases on the main branch
+    { name: 'beta/*', prerelease: 'beta' },  // Beta pre-releases
+    { name: 'develop', prerelease: true },  // Develop branch for ongoing work
+    { name: 'alpha/*', prerelease: 'alpha' },  // Alpha testing
+    { name: 'feature/*', prerelease: 'rc' }  // Feature branches
   ],
   plugins: [
     [
@@ -32,15 +32,12 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: [
-          'package.json',
-          determineChangelogFile(process.env.GITHUB_REF)
-        ],
+        assets: ['package.json', determineChangelogFile(process.env.GITHUB_REF)],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+        tagFormat: shouldTagRelease(process.env.GITHUB_REF) ? '${version}' : false,  // Conditional tag creation
       }
     ]
-  ],
-  tagFormat: '${version}'
+  ]
 };
 
 /**
@@ -52,5 +49,15 @@ function determineChangelogFile(branchName) {
   if (branchName === 'refs/heads/main') {
     return 'CHANGELOG.md';
   }
-  return 'DEVELOPMENT.md';
+  return 'Development.md';  // Use Development.md for non-main branches
+}
+
+/**
+ * Determines if a tag should be created based on the current branch.
+ * @param {string} branchName - The name of the branch.
+ * @returns {boolean} - True if a tag should be created, false otherwise.
+ */
+function shouldTagRelease(branchName) {
+  // Only create tags for the main and beta branches
+  return branchName === 'refs/heads/main' || branchName.startsWith('refs/heads/beta/');
 }
