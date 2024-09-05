@@ -52,5 +52,5 @@ function determineChangelogFile(branchName) {
   if (branchName === 'refs/heads/main') {
     return 'CHANGELOG.md';
   }
-  return 'Development.md';
+  return 'DEVELOPMENT.md';
 }
