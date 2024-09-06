@@ -1,4 +1,4 @@
-## [1.1.0-develop.1](https://github.com/rontea/theme_wf/compare/v1.0.0...v1.1.0-develop.1) (2024-09-05)
+## [1.1.0-develop.1](https://github.com/rontea/theme_wf/compare/v1.0.0...1.1.0-develop.1) (2024-09-05)
 
 ### Features
 

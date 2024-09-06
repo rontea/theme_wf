@@ -73,7 +73,7 @@ git push origin develop
 
 ### Feature - Sample
 - Create a `feature/*` branch from `develop`.
-- For testing, create a `feature/alpha/*` branch.
+- For testing, create a `feature/alpha/*` branch. 
 - Once testing is complete, merge into `feature/*`.
 - After completing feature testing, bug fixes, and refactoring, merge into `develop`.
 
