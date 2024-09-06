@@ -1,102 +1,210 @@
 # theme_wf
-Configuration Package Reference
+> [!NOTE]
+> This is the Concept of this Long Project
 
-#### Workflow branches
-- main : push to NPM , merge from beta
-- develop : stay in repo , push to any of the following for merge [alpah,beta]
-- alpha : stay in repo , merge coming from [feature,develop] , merge to [alpha,beta]
-- beta : push to NPM if env true , merge from [alpha] then can be merge to [main] once test pass
-- feature :clone from [main] merge for [alpha,beta] from new feature test, once [beta] pass merge to [main]
+Part of Theme_3 Family is a CLI tool that automates project setup and enforces CI/CD workflows. With a single command, it initializes your project by copying essential markdown files and configuring GitHub Actions for CI/CD. It also features a web-based TODO Manager for easy task tracking and collaboration.
+
+> [!WARNING]
+> This is still on development
+### TODO Function
+Develop a website interface to manage the `TODO.md` file. The interface should provide the following features:
+- **Add Todo**: Create new tasks and add them to the `TODO.md`.
+- **Add/Edit Todo Type**: Define or modify different types or categories of Todos.
+- **Add/Edit Status List**: Manage the status options (e.g., pending, in progress, completed) that can be assigned to each Todo.
+- **Add Contributor/Team Member**: Maintain a list of contributors or team members to whom tasks can be delegated.
+- **Add Subtasks**: Create and manage subtasks under each Todo for better task breakdown and tracking.
+
+#### Running the Server
+To start the server, follow these steps:
+
+1. Open your terminal.
+2. Navigate to the `src/server` directory:
+   ```bash
+   cd src/server
+   ```
+3. Run server
+    ```bash
+    node server
+    ```
 
 
-#### Develop
-- create develop and publish to github
-```git
-git branch
-git branch develop
-git checkout develop
-git branch
+#### Workflow Branches CI/CD
+- **main**: Push to NPM, merge from `beta`.
+- **develop**: Create a new branch from `main`, merge/create to `alpha`.
+- **feature**: Clone from `develop`. For feature testing, create a branch `feature/[alpha]` to test. Once testing is complete, merge back into `feature/[main]`. When done with the feature, merge into `develop`.
+- **alpha**: Create the `alpha` branch from `develop`. Once `alpha` testing is complete, create the `beta` branch.
+- **beta**: Create the `beta` branch from `alpha`. After beta testing, merge into `main`. Additional settings can be pushed to NPM if the environment variable is set to `true`.
+
+#### Helper Project
+
+
+#### [Develop](#Develop)
+To create the `develop` branch and publish it to GitHub, follow these steps:
+
+```bash
+# List all local branches
+git branch 
+
+# Create a new branch called 'develop'
+git branch develop 
+
+# Switch to the 'develop' branch
+git checkout develop 
+
+# Confirm you're on the 'develop' branch
+git branch 
+
+# Stage all changes for commit
 git add . 
-npx git-cz
+
+# Use Commitizen (npx git-cz) to commit with a standardized format
+npx git-cz 
+
+# Push the 'develop' branch to GitHub
 git push origin develop
 ```
-- No NPM publish but will be release under change log
-- Make sure to git pull for the update version number
-- Can be move to feature for specific feature
-- semantic increment 
+#### Side Information:
 
-### Feature - sample
-- Create feature branch
-- Create feature coming from develop
-- Merge to Beta or Alpha
+- The develop branch will not be published to NPM, but it will be released under the changelog.
+- Always run git pull to get the latest version number updates before pushing changes.
+- You can move from develop to a feature branch if working on a specific feature.
+- Ensure semantic versioning increments (e.g., major, minor, patch) are followed when - updating version numbers.
 
-```git
-# Create a feature branch from develop
 
-git branch
+### Feature - Sample
+- Create a `feature/*` branch from `develop`.
+- For testing, create a `feature/alpha/*` branch.
+- Once testing is complete, merge into `feature/*`.
+- After completing feature testing, bug fixes, and refactoring, merge into `develop`.
+
+```bash
+# Ensure you are on the 'develop' branch and it's up to date
 git checkout develop
 git pull origin develop
+
+# Create a new feature branch from 'develop'
 git checkout -b feature/new-feature
+
+# Optional: Pull any existing changes in the feature branch (if applicable)
 git pull origin feature/new-feature
-git add .
+
+# Stage and commit changes using Commitizen (npx git-cz)
+git add . 
 npx git-cz
+
+# Push the feature branch to GitHub
 git push origin feature/new-feature
 ```
+- Merging Develop and Pushing to GitHub
 
-- Merge Develop and pull request on github
-- remove develop
+```bash
+# Switch back to 'develop' branch
+git checkout develop
 
-```git
-#remove develop on local branch
-git branch -d develop
-git branch -d develop --force
+# Merge your feature branch into 'develop'
+git merge feature/new-feature
+
+# Push the updated 'develop' branch to GitHub
+git push origin develop
 ```
 
 ### Alpha - sample
 
-```git 
-git pull origin feature/new-feature
+```bash
+# Step 1: Pull the latest changes from the develop branch
+git pull origin develop
+
+# Step 2: Create a new alpha branch for the feature
 git checkout -b alpha/new-feature
 
-# Do bug fixes > then 
+# Step 3: Bug fixes - create a separate branch for fixing bugs found in alpha
+git checkout -b alpha/new-feature/bug
 
+# Step 4: After bug fixes, switch back to the alpha feature branch
+git checkout alpha/new-feature
+
+# Step 5: Merge the bug fix branch into the alpha feature branch
+git merge alpha/new-feature/bug
+
+# Step 6: Stage changes for commit
 git add .
+
+# Step 7: Use Commitizen for a conventional commit message
 npx git-cz
+
+# Step 8: Push the updated alpha feature branch to the remote repository
 git push origin alpha/new-feature
 
 ```
 
 ### Beta - sample
 
-```git
+```bash
+# Step 1: Pull the latest changes from the alpha feature branch
 git pull origin alpha/new-feature
+
+# Step 2: Create a new beta branch for the feature
 git checkout -b beta/new-feature
 
-# Do bug fixes > then
-git add .
-npx git-cz
+# Step 3: Push the beta branch to the remote repository
 git push origin beta/new-feature
+
+# Step 4: If bugs are found, create a separate branch for fixing bugs in the beta phase
+git checkout -b beta/new-feature/bug
+
+# Step 5: Once the bug is fixed, switch back to the beta feature branch
+git checkout beta/new-feature
+
+# Step 6: Merge the bug fix branch into the beta feature branch
+git merge beta/new-feature/bug
+
+# Step 7: Stage all changes
+git add .
+
+# Step 8: Use Commitizen for a structured commit message
+npx git-cz
+
+# Step 9: Push the updated beta feature branch to the remote repository
+git push origin beta/new-feature
+
 ```
 
-### Ready for release
+### Main - Ready for release
 
-```git
-# Merge changes to Main
+```bash
+# Step 1: Switch to the main branch
 git checkout main
-git merge branch-name
 
-# resolve conflict accept incoming changes
+# Step 2: Merge the beta feature branch into the main branch
+git merge beta/new-feature
+
+# Step 3: If conflicts arise, resolve them manually by accepting incoming changes
 git add <file-with-conflict>
 
-# Once all conflict accept all incoming changes
+# Step 4: After resolving all conflicts and accepting incoming changes
 npx git-cz
+
+# Step 5: Push the changes to the remote main branch
 git push origin main
 
-# Delete branch origin
-git push origin --delete <branch-name>
-
-# Delete branch local
+# Step 6: Optionally, delete the branch locally if it's no longer needed
 git branch -d <branch-name>
+
+# Step 7: Optionally, delete the branch from the remote repository if it's no longer needed
+git push origin --delete <branch-name>
+```
+
+#### Removing Branch Note (Local and Remote)
+```bash
+# Remove the 'develop' branch locally
+git branch -d branchName
+
+# Force delete the 'develop' branch locally (if necessary)
+git branch -D branchName
+
+# Remove the 'develop' branch from the remote repository
+git push origin --delete BranchName
+
 ```
 
 #### Commitizen and Conventional Commits
@@ -137,62 +245,16 @@ npx git-cz
 npm  install --save-dev @semantic-release/changelog@^6.0.3 @semantic-release/commit-analyzer@^13.0.0 @semantic-release/exec@^6.0.3 @semantic-release/git@^10.0.1 @semantic-release/github@^10.1.3 @semantic-release/npm@^12.0.1 @semantic-release/release-notes-generator@^14.0.1 commitizen@^4.3.0 conventional-changelog-conventionalcommits@^8.0.0 cross-env@^7.0.3 cz-conventional-changelog@^3.3.0 semantic-release@^24.0.0 
 ```
 
-- Create a .releaserc.js
-
-```js
-module.exports = {
-  branches: [
-    { name: 'main' },
-    { name: 'develop', prerelease: true },
-    { name: 'alpha/*', prerelease: 'alpha' },
-    { name: 'beta/*', prerelease: 'beta' },
-    { name: 'feature/*', prerelease: 'rc' }
-  ],
-  plugins: [
-    [
-      '@semantic-release/commit-analyzer',
-      {
-        preset: 'conventionalcommits'
-      }
-    ],
-    [
-      '@semantic-release/release-notes-generator',
-      {
-        preset: 'conventionalcommits',
-        writerOpts: {
-          commitsSort: ['subject', 'scope']
-        }
-      }
-    ],
-    '@semantic-release/changelog',
-    [
-      '@semantic-release/npm',
-      {
-        npmPublish: process.env.NPM_PUBLISH === 'true' || process.env.GITHUB_REF === 'refs/heads/main'
-      }
-    ],
-    '@semantic-release/github',
-    [
-      '@semantic-release/git',
-      {
-        assets: ['package.json', 'CHANGELOG.md'],
-        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-      }
-    ]
-  ],
-  tagFormat: '${version}'
-};
-
-```
-
-- Add a script to package.json to run Semantic Release:
-
+#### Semantic Release extended config
+- under scripts in package.json
 ```json
-"scripts": {
-  "semantic-release": "npx semantic-release",
-   "npm-publish-if-true": "if [ \"$NPM_PUBLISH\" = \"true\" ]; then npm publish; else echo \"NPM_PUBLISH is not true, skipping publish\"; fi"
-}
+ "release:semver": "semantic-release --extends ./.releaserc-semver.js",
+    "release:npm": "semantic-release --extends ./.releaserc-npm.js",
 ```
+
+- Create a [.releaserc-semver.js](https://github.com/rontea/theme_wf/wiki/.releaserc%E2%80%90semver.js)
+- Create a [.releaserc-npm.js](https://github.com/rontea/theme_wf/wiki/.releaserc%E2%80%90npm.js)
+
 
 ```json
 "config": {
@@ -204,64 +266,13 @@ module.exports = {
 
 #### GitHub Actions
 
+- semantic release
+- npm publish
+- X posting
+
 - Create a .github/workflows/release.yml 
+  - [semantic-version-update.yml](https://github.com/rontea/theme_wf/wiki/semantic%E2%80%90version%E2%80%90update.yml)
 
-```yaml
-name: Release
-
-on:
-  push:
-    branches:
-      - main
-      - develop
-      - feature/*
-      - alpha/*
-      - beta/*
-      - stable/*
-      - master
-
-jobs:
-  # Step 1: Build
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-  # Step 2: Semantic Release
-  semantic-release:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run semantic release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_PUBLISH: ${{ github.ref == 'refs/heads/main' || (github.ref == 'refs/heads/beta' && env.NPM_PUBLISH == 'true') }}
-        run:  npx semantic-release
-
-
-```
 
 
 #### Push CLI
