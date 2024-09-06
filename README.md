@@ -6,6 +6,7 @@ Part of Theme_3 Family is a CLI tool that automates project setup and enforces C
 
 > [!WARNING]
 > This is still on development
+
 ### TODO Function
 Develop a website interface to manage the `TODO.md` file. The interface should provide the following features:
 - **Add Todo**: Create new tasks and add them to the `TODO.md`.
@@ -13,6 +14,10 @@ Develop a website interface to manage the `TODO.md` file. The interface should p
 - **Add/Edit Status List**: Manage the status options (e.g., pending, in progress, completed) that can be assigned to each Todo.
 - **Add Contributor/Team Member**: Maintain a list of contributors or team members to whom tasks can be delegated.
 - **Add Subtasks**: Create and manage subtasks under each Todo for better task breakdown and tracking.
+
+> [!NOTE]
+> [Theme_ Wiki](https://github.com/rontea/theme_wf/wiki)
+
 
 #### Running the Server
 To start the server, follow these steps:
@@ -27,6 +32,9 @@ To start the server, follow these steps:
     node server
     ```
 
+> [!NOTE]
+> For full branch management explination [click here](https://github.com/rontea/theme_wf/wiki/Branch-Management
+)
 
 #### Workflow Branches CI/CD
 - **main**: Push to NPM, merge from `beta`.
