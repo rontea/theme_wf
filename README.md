@@ -45,6 +45,15 @@ To start the server, follow these steps:
 
 #### Helper Project
 
+> [!NOTE]
+> Day to Day commit Management on Conventional Commit Messaging [Learn More](https://github.com/rontea/theme_wf/wiki/Conventional-Commit-Messaging-Format)
+
+Commitizen will bump versions based on certain commit types (e.g., feat, fix, etc.). To prevent generating excessive releases during branch development, follow the proposed conventional commit messaging format outlined [here](https://github.com/rontea/theme_wf/wiki/Conventional-Commit-Messaging-Format). This approach ensures version bumps and releases are only triggered when necessary.
+
+
+```bash
+git commit -m "type(scope): description"
+```
 
 #### [Develop](#Develop)
 To create the `develop` branch and publish it to GitHub, follow these steps:
