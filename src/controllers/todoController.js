@@ -105,6 +105,28 @@ class TodoController {
 
   }
 
+  static addContributor(req,res){
+
+    try{
+
+      const contributor = req.body;
+
+      setTimeout(() => {
+       console.log('lock');
+      }, 2000);
+      console.log('unlock');
+
+      console.log(contributor);
+
+
+      res.json('completed');
+
+    }catch(err){
+      console.log('server error' , err);
+    }
+
+  }
+
   /**
    * Responsible in getting all statuses
    * @param {*} req 

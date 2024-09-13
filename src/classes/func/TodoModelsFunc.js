@@ -72,6 +72,28 @@ const addTypes = (types) => {
 }
 
 /**
+ * 
+ * @param {*} contributor 
+ * @returns respond
+ */
+
+const addContributor = (contributor) => {
+
+    let responds = "{}";
+
+    try{
+        const queryTodos = new QueryTodos(contributor, { path : config.paths.todoJsonFile});
+        queryTodos.saveContributor(contributor);
+        responds = { message : "Contributor has been saved"};
+
+    }catch(err){
+       return { message : `Failed to add types: ${err}` };
+    }
+    
+    return responds;
+}
+
+/**
  * Function to get Todos from Json file
  * @returns respond
  */
@@ -164,7 +186,7 @@ const getContributors = () => {
         const queryFileTodos = new QueryTodosFile(config.paths.todoJsonFile);
         let todosData = queryFileTodos.getTodos();
         if(!utils.isObjectAvailable('assigned', todosData)){
-            todosData = { assigned : [{name: '' , link: ''}]};
+            todosData = { assigned : []};
         }
 
         responds = {message : "Load Get Contributors Success " , assigned : todosData.assigned};

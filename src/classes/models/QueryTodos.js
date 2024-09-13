@@ -35,7 +35,7 @@ class QueryTodos extends QueryTodosFile {
 
     mapContributor(){
         /** Create and add new item */
-        let todos = [];
+        let assigned = [];
         let data = super.getTodos();
         data.assigned = assigned;
         data.assigned.push(this.#todo);

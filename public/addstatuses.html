@@ -189,6 +189,7 @@
         if(!response.ok){
           throw new Error('Failed to connect', response.status)
         }
+        
         /* implement delay for 2 seconds  working on it */
         await setTimeout(() => {
           console.log("lock");

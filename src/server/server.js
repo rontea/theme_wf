@@ -32,6 +32,10 @@ app.get('/addtypes', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public', 'addtypes.html'));
 });
 
+app.get('/addcontributor', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public', 'addcontributor.html'));
+});
+
 
 /** Add Todos */
 app.post('/api/addtodo', TodoController.addTodo);
@@ -50,7 +54,11 @@ app.get('/api/get/types', TodoController.getTypes);
 /** */
 app.post('/api/addtypes', TodoController.addTypes);
 
+/** */
 app.get('/api/get/contributors', TodoController.getAssign);
+
+/** */
+app.post('/api/addContributor', TodoController.addContributor);
 
 //app.get('/api/todos', TodoController.getTodos);
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO Manager</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <p> <a href="./" class="link">home</a> | <a href="#" id="modalClick" class="link">add</a>  </p>
+  <div class="" id="contributorList">
+    <h1>Contributor List</h1>
+    <table id="contributor">
+        <thead>
+            <tr>
+                <th>Alias</th>
+                
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated by JavaScript -->
+        </tbody>
+    </table>
+  </div>
+
+    <!-- Modal Structure -->
+    <div id="fieldModal" class="modal">
+        <form id="saveContributor"> 
+            <div class="modal-content">
+                <h2>Add Contributor</h2>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter name" required>
+                </div>
+                <div class="form-group">
+                    <label for="alias">Alias </label>
+                    <input type="text" id="alias" placeholder="Enter alias" required>
+                </div>
+                <button id="saveBtn" type="button">Save</button>
+                <button id="cancelBtn" type="button">Cancel</button>
+                <div class="message" id="message">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Notification modal -->
+  <div id="notificationModal">
+    Contributor added successfully!
+  </div>
+
+  <div id="error" style="color: red;"></div>
+
+    <script>
+        'use strict';
+        /* on document load*/
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const saveButton = document.getElementById('saveBtn');
+
+            // init state as null
+            saveButton.disabled = true;
+
+            const errorDiv = document.getElementById('error');
+
+            const modalClick =  document.getElementById('modalClick');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const fieldModal = document.getElementById('fieldModal');
+            const inputName = document.getElementById('name');
+            const inputAlias = document.getElementById('alias');
+            const message = document.getElementById('message');
+            const notificationModal = document.getElementById('notificationModal');
+
+            modalClick.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                inputName.value = '';
+                inputAlias.value = '';
+                fieldModal.style.display = 'flex'; // Show modal
+            
+            });
+
+            cancelBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                inputName.value = '';
+                inputAlias.value = '';
+                fieldModal.style.display = 'none'; // Show modal
+                window.location.reload();
+            
+            });
+
+            /* Event on input */
+            inputName.addEventListener('input', validateInputs);
+            inputAlias.addEventListener('input', validateInputs);
+
+            /* validate */
+            function validateInputs(){
+               
+                if (inputName.value.length >= 3 && inputAlias.value.length >= 3) {
+                    saveButton.disabled = false; // Enable Save button
+                } else {
+                    saveButton.disabled = true;  // Disable Save button
+                }
+            }
+            
+            saveButton.addEventListener('click' , async (e) => {
+                e.preventDefault();
+                await addcontributor();
+            });
+
+                  // Show the notification for 3 seconds
+            function showNotification() {
+                notificationModal.classList.add('show'); // Show notification
+                setTimeout(() => {
+                    notificationModal.classList.remove('show'); // Hide after 3 seconds
+                }, 3000);
+            }
+
+            /* Add add contributor */
+            async function addcontributor(){
+               
+                try{
+                  
+                    
+                    
+                    const nameValue = inputName.value;
+                    const aliasValue = inputAlias.value;
+
+                    saveButton.disabled = true;
+
+                    const contributor = { 
+                        name : nameValue,
+                        alias : aliasValue
+                    };
+
+                    const response = await fetch('/api/addContributor' , {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(contributor)
+                    });
+
+                    if(!response.ok){
+                        const error = await response.json();
+                        throw new Error(`HTTP error! Status: ${error.status}`);
+                    }
+
+                    showNotification();
+
+
+                }catch(err){
+                    errorDiv.textContent = err.message;
+                }finally {
+                    // free 
+                    setTimeout(() => {  
+                        saveButton.disabled = false;
+                        window.location.reload();
+                    }, 3000);
+                    
+                }
+
+
+                };
+
+            /* load all contributor */
+            async function loadContributorListAsync() {
+
+                try{
+
+                    const response = await fetch('/api/get/contributors' , {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+
+                    if(!response.ok){
+                    
+                        const error = await response.json();
+                        throw new Error(`HTTP error! Status: ${error.status}`);
+                        
+                    }
+
+                    const results = await response.json();
+                    
+                    if(results.length !== 0){
+                        console.log(results);
+                    }else{
+                        await nodataResponse();
+                    }
+
+                }catch(err){
+                    errorDiv.textContent = err.message;
+                }
+            };
+
+            /* No Data Default Message*/
+            async function nodataResponse(){
+         
+                const p = document.createElement('p');
+                p.textContent = "No Data Available";
+
+                document.getElementById('contributorList').appendChild(p);
+            };
+
+            
+
+            loadContributorListAsync();
+
+        });
+    </script>
+
+</body>
+
+</html>
