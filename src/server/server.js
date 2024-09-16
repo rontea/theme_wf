@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const TodoController = require('../controllers/todoController');
+const TodosMiddleware = require('../classes/middleware/todos/TodosMiddleware');
 
 const app = express();
 const port = 3100;
@@ -58,7 +59,7 @@ app.post('/api/addtypes', TodoController.addTypes);
 app.get('/api/get/contributors', TodoController.getAssign);
 
 /** */
-app.post('/api/addContributor', TodoController.addContributor);
+app.post('/api/addContributor', TodosMiddleware.validateContributors,TodoController.addContributor);
 
 //app.get('/api/todos', TodoController.getTodos);
 

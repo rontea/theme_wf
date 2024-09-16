@@ -55,6 +55,29 @@
       "comments": "This is a sample comment, we are working on this sample 100"
     }
   ],
+
+  "categories": [
+    "Bug Fixes",
+    "Feature Development",
+    "Code Refactoring",
+    "Testing",
+    "Documentation",
+    "Code Reviews",
+    "Deployment",
+    "Research and Prototyping",
+    "Performance Optimization",
+    "Security",
+    "Environment Setup",
+    "User Interface/UX Improvements",
+    "Backlog Grooming",
+    "Dependency Management",
+    "Technical Debt",
+    "Meeting and Collaboration",
+    "Learning and Development",
+    "DevOps",
+    "Accessibility",
+    "Migration"
+  ],
   
   "types": [
     "feat",
@@ -68,6 +91,18 @@
     "ci",
     "chore",
     "revert"
+  ],
+
+  "statuses": [
+    "Unassigned",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "Testing",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold"
   ],
 
   "assigned": [

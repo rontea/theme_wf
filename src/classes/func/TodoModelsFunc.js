@@ -200,4 +200,4 @@ const getContributors = () => {
 }
 
 
-module.exports = {addTodo , addStatuses , addTypes, getTodos , getStatuses, getTypes, getContributors};
+module.exports = {addTodo , addStatuses , addTypes, addContributor, getTodos , getStatuses, getTypes, getContributors};

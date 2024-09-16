@@ -11,7 +11,7 @@
   <p> <a href="./" class="link">home</a> | <a href="#" id="modalClick" class="link">add</a>  </p>
   <div class="" id="contributorList">
     <h1>Contributor List</h1>
-    <table id="contributor">
+    <table id="contributorsTable">
         <thead>
             <tr>
                 <th>Alias</th>
@@ -189,7 +189,7 @@
                     const results = await response.json();
                     
                     if(results.length !== 0){
-                        console.log(results);
+                        await listContributors(results);
                     }else{
                         await nodataResponse();
                     }
@@ -207,6 +207,38 @@
 
                 document.getElementById('contributorList').appendChild(p);
             };
+
+            /* Create list contributors */
+            async function listContributors(contributors) {
+
+                const contributorsTable = document.getElementById('contributorsTable').getElementsByTagName('tbody')[0];
+
+                contributors.forEach(contributor => {
+                    const link = document.createElement('a');
+                    const linkDel = document.createElement('a');
+
+                    link.href = `#${contributor.name}`;
+                    link.textContent = 'Edit';
+
+                    linkDel.href = `#${contributor.name}`;
+                    linkDel.textContent = 'Del';
+
+                    const row = contributorsTable.insertRow();
+
+                    const cellAlias = row.insertCell(0);
+                    const cellActionEdit = row.insertCell(1);
+                    const cellActionDelete = row.insertCell(2);
+
+                    cellAlias.textContent = contributor.name;
+
+                    cellActionEdit.appendChild(link);
+                    cellActionDelete.appendChild(linkDel);
+
+                });
+                
+   
+
+            }
 
             
 

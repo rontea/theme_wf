@@ -168,7 +168,7 @@ class QueryTodos extends QueryTodosFile {
         }else{
          //update content 
 
-         todo.assigned = this.#todo;
+         todo.assigned.push(this.#todo);
         }
         this.writeTodosJSON(todo);
         

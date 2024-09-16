@@ -105,6 +105,12 @@ class TodoController {
 
   }
 
+  /**
+   * Responsible in adding Contributors
+   * @param {*} req 
+   * @param {*} res 
+   */
+
   static addContributor(req,res){
 
     try{
@@ -112,13 +118,9 @@ class TodoController {
       const contributor = req.body;
 
       setTimeout(() => {
-       console.log('lock');
+        TodoModel.saveContributor(contributor);
       }, 2000);
-      console.log('unlock');
-
-      console.log(contributor);
-
-
+     
       res.json('completed');
 
     }catch(err){

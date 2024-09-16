@@ -1,0 +1,49 @@
+{
+  "assigned": [
+    {
+      "name": "ron tea",
+      "alias": "rontea"
+    }
+  ],
+  "statuses": [
+    "Unassigned",
+    "To Do",
+    "In Progress",
+    "Code Review",
+    "Testing",
+    "Blocked",
+    "Completed",
+    "Deployed",
+    "On Hold"
+  ],
+  "types": [
+    "feat",
+    "fix",
+    "docs",
+    "style",
+    "refactor",
+    "perf",
+    "test",
+    "build",
+    "ci",
+    "chore",
+    "revert",
+    "frontend"
+  ],
+  "todos": [
+    {
+      "id": "feature-todo-TD01",
+      "title": "TODO Fronend",
+      "date": "2024-09-16",
+      "days": 0,
+      "description": "Building frontend using Theme_3 under Theme3_forms.",
+      "type": "frontend",
+      "status": "In Progress",
+      "assign": "ron tea",
+      "subtask": [
+        "[Theme3_forms](https://github.com/rontea/theme3_forms)"
+      ],
+      "comments": "Will get back to TODO once UI has been created, notice that I'm currently spending much of my time on front-end rather than the backend."
+    }
+  ]
+}
