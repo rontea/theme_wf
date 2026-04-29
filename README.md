@@ -5,7 +5,7 @@
 Part of Theme_3 Family is a CLI tool that automates project setup and enforces CI/CD workflows. With a single command, it initializes your project by copying essential markdown files and configuring GitHub Actions for CI/CD. It also features a web-based TODO Manager for easy task tracking and collaboration.
 
 > [!WARNING]
-> This is still on development
+> Migrated to GALAGAV 
 
 ### TODO Function
 Develop a website interface to manage the `TODO.md` file. The interface should provide the following features:
